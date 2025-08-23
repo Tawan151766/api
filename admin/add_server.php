@@ -93,154 +93,143 @@ echo "<script language='javascript'>swal('ERROR SITE PIN !','กำหนด Sit
             </div>
 
             <div class="modal-body">
-                <div class="row">
-                    <div class="col-xs-7">
-                        <div class="well">
-                            <form id="loginForm" method="POST" action="">
-                                <div class="row">
-                                    <div class="col-xs-12  col-md-6">
-                                        <div class="form-group">
-                                            <label for="username" class="control-label">IP&nbsp;Address&nbsp;/&nbsp;DNS</label>
-                                            <input type="text" class="form-control" id="ip" name="ip" required title="Please enter you IP/DNS" placeholder="xxx.sn.mynetname.net">
-                                        </div>
-                                    </div>
-                                    <div class="col-xs-12  col-md-6">
-                                        <div class="form-group">
-                                            <label for="password" class="control-label">Site&nbsp;Name</label>
-                                            <input type="text" class="form-control" id="siteName" name="siteName" title="Please enter your Site Name" placeholder="Ex.ชื่อไซต์งาน" required>
-                                        </div>
-                                    </div>
-                                </div>
 
-                                <div class="row">
-                                    <div class="col-xs-12  col-md-6">
-                                        <div class="form-group">
-                                            <label for="password" class="control-label">Username</label>
-                                            <input type="text" class="form-control" id="username" name="username" value="admin" required title="Please enter your username">
-                                        </div>
-                                    </div>
-                                    <div class="col-xs-12  col-md-6">
-                                        <div class="form-group">
-                                            <label for="password" class="control-label">Password</label>
-                                            <input type="password" class="form-control" id="password" name="password" value="" required title="Please enter your password">
-                                        </div>
-                                    </div>
-                                </div>
+  <!-- แถวบน: จอดำ + ปุ่ม -->
+  <div class="monitor-row">
+    <div class="monitor-left">
+      <div class="top-monitor test-connect"></div>
+    </div>
 
-                                <div class="row">
-                                    <div class="col-xs-12  col-md-6">
-                                        <div class="form-group">
-                                            <label for="password" class="control-label">Port&nbsp;API</label>
-                                            <input type="text" class="form-control" id="portapi" name="portapi" value="8728" required title="Please enter your port-api">
-                                        </div>
-                                    </div>
-                                    <div class="col-xs-12  col-md-6">
-                                        <div class="form-group">
-                                            <label for="password" class="control-label">Port&nbsp;Web&nbsp;Config</label>
-                                            <input type="text" class="form-control" id="portweb" name="portweb" value="80" required title="Please enter your port-web">
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="row">
+    <div class="monitor-right">
+      <?php if($secom_v3==$_SESSION['security']){ ?>
+        <button class="btn btn-info btn-square" disabled>
+          <i class="fa fa-plus"></i> เพิ่ม
+        </button>
+      <?php } else { ?>
+        <button id="btnAdd" class="btn btn-info btn-square"
+                onclick="document.getElementById('loginForm').submit();">
+          <i class="fa fa-plus"></i> เพิ่ม
+        </button>
+      <?php } ?>
 
-                                    <?php 
-	                     if(empty($secom_v1)||($secom_v1==$_SESSION['security'])){	
-		                                                  ?>
-                                    <div class="col-xs-12  col-md-6">
-                                        <div class="form-group">
-                                            <label for="password" class="control-label">&nbsp;&nbsp;Site&nbsp;PIN</label>
-                                            <a href="#" data-toggle="modal" data-target="#PINDetail" data-toggle="tooltip" data-placement="top" title="ดูรายละเอียด"><i class="fa fa-circle" style="color: #f7d13c"> </i></a>
-                                            <input type="text" class="form-control" id="customerPin" name="customerPin" title="Please enter your Site PIN" maxlength="8" placeholder="Ex.12345678">
-                                        </div>
-                                    </div>
-                                    <div class="col-xs-12  col-md-6">
-                                        <div class="form-group">
-                                            <label for="password" class="control-label">&nbsp;Site&nbsp;PIN</label>
-                                            <a href="#" data-toggle="modal" data-target="#PINDetail" data-toggle="tooltip" data-placement="top" title="ดูรายละเอียด"><i class="fa fa-circle" style="color: #ff1c15"> </i></a>
-                                            <input type="text" class="form-control" id="userPin" name="userPin" title="Please enter your Site PIN" maxlength="8" placeholder="Ex.12345678">
-                                        </div>
-                                    </div>
-                                    <?php  }else{
-							  if($secom_v2==$_SESSION['security']){
-							  ?>
+      <button class="btn btn-danger btn-square"
+              onclick="window.location='index.php?page=server'">
+        <i class="fa fa-times"></i> ยกเลิก
+      </button>
 
-                                    <!--hide  -->
-                                    <input type="hidden" value="<?php echo $_SESSION['security'];?>" name="customerPin">
-                                    <!--hide  -->
+      <button id="btnTest" class="btn btn-success btn-square"
+              onclick="document.querySelector('.test-btn').click();">
+        <i class="fa fa-cloud-download"></i> ทดสอบ
+      </button>
 
-                                    <div class="col-xs-12  col-md-6">
-                                        <div class="form-group">
-                                            <label for="password" class="control-label">  Site PIN </label>
-                                            <a href="#" data-toggle="modal" data-target="#PINDetail" data-toggle="tooltip" data-placement="top" title="ดูรายละเอียด"><i class="fa fa-circle" style="color: #f7d13c"> </i></a>
-                                            <option type="text" class="form-control" id="customerPin" name="customerPin" title="Please enter your Site PIN" maxlength="8" value="<?php echo $_SESSION['security'];?>" placeholder="Ex.12345678" required>
-                                                <?php echo $_SESSION['security'];?>
-                                        </div>
-                                    </div>
-                                    <div class="col-xs-12  col-md-6">
-                                        <div class="form-group">
-                                            <label for="password" class="control-label"> Site PIN </label>
-                                            <a href="#" data-toggle="modal" data-target="#PINDetail" data-toggle="tooltip" data-placement="top" title="ดูรายละเอียด"><i class="fa fa-circle" style="color: #ff1c15"> </i></a>
-                                            <input type="text" class="form-control" id="userPin" name="userPin" title="Please enter your Site PIN" maxlength="8" placeholder="Ex.12345678">
-                                        </div>
-                                    </div>
-                                    <?php }
-						  if($secom_v3==$_SESSION['security']){ ?>
-                                    <div class="col-xs-12  col-md-6">
-                                        <div class="form-group">
-                                            <label for="password" class="control-label">  Site PIN </label>
-                                            <a href="#" data-toggle="modal" data-target="#PINDetail" data-toggle="tooltip" data-placement="top" title="ดูรายละเอียด"><i class="fa fa-circle" style="color: #f7d13c"> </i></a>
-                                            <option type="text" class="form-control" id="customerPin" name="customerPin" title="Please enter your Site PIN" maxlength="8" value="<?php echo $_SESSION['security'];?>" placeholder="Ex.12345678" required>********
-                                        </div>
-                                    </div>
-                                    <div class="col-xs-12  col-md-6">
-                                        <div class="form-group">
-                                            <label for="password" class="control-label"> Site PIN </label>
-                                            <a href="#" data-toggle="modal" data-target="#PINDetail" data-toggle="tooltip" data-placement="top" title="ดูรายละเอียด"><i class="fa fa-circle" style="color: #ff1c15"> </i></a>
-                                            <option type="text" class="form-control" id="userPin" name="userPin" title="Please enter your Site PIN" maxlength="8" value="<?php echo $_SESSION['security'];?>" placeholder="Ex.12345678" required>
-                                                <?php echo $_SESSION['security'];?>
-                                        </div>
-                                    </div>
+      <button id="btnReset" class="btn btn-warning btn-square"
+              onclick="document.getElementById('loginForm').reset();">
+        <i class="fa fa-refresh"></i> รีเซ็ต
+      </button>
+    </div>
+  </div>
 
-                                    <?php } }?>
+  <!-- แถวล่าง: ฟอร์มเต็มความกว้าง -->
+  <div class="well">
+    <form id="loginForm" method="POST" action="">
+      <div class="row">
+        <div class="col-xs-12 col-md-6">
+          <div class="form-group">
+            <label class="control-label">IP Address / DNS</label>
+            <input type="text" class="form-control" id="ip" name="ip" required placeholder="xxx.sn.mynetname.net">
+          </div>
+        </div>
+        <div class="col-xs-12 col-md-6">
+          <div class="form-group">
+            <label class="control-label">Site Name</label>
+            <input type="text" class="form-control" id="siteName" name="siteName" required placeholder="Ex.ชื่อไซต์งาน">
+          </div>
+        </div>
+      </div>
 
+      <div class="row">
+        <div class="col-xs-12 col-md-6">
+          <div class="form-group">
+            <label class="control-label">Username</label>
+            <input type="text" class="form-control" id="username" name="username" value="admin" required>
+          </div>
+        </div>
+        <div class="col-xs-12 col-md-6">
+          <div class="form-group">
+            <label class="control-label">Password</label>
+            <input type="password" class="form-control" id="password" name="password" required>
+          </div>
+        </div>
+      </div>
 
-                                </div>
+      <div class="row">
+        <div class="col-xs-12 col-md-6">
+          <div class="form-group">
+            <label class="control-label">Port API</label>
+            <input type="text" class="form-control" id="portapi" name="portapi" value="8728" required>
+          </div>
+        </div>
+        <div class="col-xs-12 col-md-6">
+          <div class="form-group">
+            <label class="control-label">Port Web Config</label>
+            <input type="text" class="form-control" id="portweb" name="portweb" value="80" required>
+          </div>
+        </div>
+      </div>
 
+      <div class="row">
+        <?php if(empty($secom_v1)||($secom_v1==$_SESSION['security'])){ ?>
+          <div class="col-xs-12 col-md-6">
+            <div class="form-group">
+              <label class="control-label">Site PIN <i class="fa fa-circle" style="color:#f7d13c"></i></label>
+              <input type="text" class="form-control" id="customerPin" name="customerPin" maxlength="8" placeholder="Ex.12345678">
+            </div>
+          </div>
+          <div class="col-xs-12 col-md-6">
+            <div class="form-group">
+              <label class="control-label">Site PIN <i class="fa fa-circle" style="color:#ff1c15"></i></label>
+              <input type="text" class="form-control" id="userPin" name="userPin" maxlength="8" placeholder="Ex.12345678">
+            </div>
+          </div>
+        <?php } else { if($secom_v2==$_SESSION['security']){ ?>
+          <input type="hidden" value="<?php echo $_SESSION['security'];?>" name="customerPin">
+          <div class="col-xs-12 col-md-6">
+            <div class="form-group">
+              <label class="control-label">Site PIN <i class="fa fa-circle" style="color:#f7d13c"></i></label>
+              <option class="form-control" required><?php echo $_SESSION['security'];?></option>
+            </div>
+          </div>
+          <div class="col-xs-12 col-md-6">
+            <div class="form-group">
+              <label class="control-label">Site PIN <i class="fa fa-circle" style="color:#ff1c15"></i></label>
+              <input type="text" class="form-control" id="userPin" name="userPin" maxlength="8" placeholder="Ex.12345678">
+            </div>
+          </div>
+        <?php } if($secom_v3==$_SESSION['security']){ ?>
+          <div class="col-xs-12 col-md-6">
+            <div class="form-group">
+              <label class="control-label">Site PIN <i class="fa fa-circle" style="color:#f7d13c"></i></label>
+              <option class="form-control">********</option>
+            </div>
+          </div>
+          <div class="col-xs-12 col-md-6">
+            <div class="form-group">
+              <label class="control-label">Site PIN <i class="fa fa-circle" style="color:#ff1c15"></i></label>
+              <option class="form-control"><?php echo $_SESSION['security'];?></option>
+            </div>
+          </div>
+        <?php }} ?>
+      </div>
 
-                                <div class="row">
-                                    <div class="col-xs-6 col-md-6">
+      <!-- ปุ่มจริงให้สคริปต์เดิมเรียกใช้ -->
+      <button type="button" class="btn btn-success hidden-inline test-btn">
+        <i class="fa fa-cloud-download"></i> ทดสอบการเชื่อมต่อ
+      </button>
+      <button type="reset" id="btnResetHidden" class="hidden-inline"></button>
+    </form>
+  </div>
+</div>
 
-                                        <button type="button" class="btn btn-success btn-block test-btn"><i class="fa fa-cloud-download">&nbsp;&nbsp;</i>ทดสอบการเชื่อมต่อ</button>
-                                    </div>
-                                    <div class="col-xs-6 col-md-6 pull-right">
-                                        <button id="btnSave" class="btn btn-warning  btn-block" type="reset"><i class="fa fa-refresh">&nbsp;&nbsp;</i>รีเซ็ต</button>
-                                    </div>
-                                </div>
-
-
-                        </div>
-                    </div>
-                    <div class="col-xs-5">
-                        <p class="lead"><strong>ทดสอบการเชื่อมต่อ</strong> </p>
-                        <div class="test-connect">
-                            <div>
-
-                            </div>
-                        </div>
-                        <?php
-			if($secom_v3==$_SESSION['security']){ ?>
-                            <input type="" class="btn btn-info disabled btn-block add-server" value="เพิ่ม">
-                            <?php
-			  }else{ ?>
-
-                                <input type="submit" class="btn btn-info btn-block add-server" value="เพิ่ม">
-
-                                <?php } ?>
-
-                                <input type="button" class="btn btn-danger btn-block add-server" value="ยกเลิกและย้อนกลับ" onclick="window.location='index.php?page=server'">
-                    </div>
-                    </form>
-                </div>
                 <!-- Modal Detail-->
                 <div class="modal fade" id="Detail" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
 
