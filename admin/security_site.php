@@ -5,9 +5,7 @@ $secu=mysql_fetch_array(mysql_query("SELECT admin_pin FROM mt_config"));
     $Empty_pin="000000000";
 	$mdEmpty_pin=md5($Empty_pin);
 	if(empty($ad_pin)){
-	echo "<script language='javascript'>swal('ERROR SECURITY SITE','ท่านยังไม่ได้สร้างไซต์งาน','error').then(function () {
-    window.location.href = 'index.php?page';}, function (dismiss) {if (dismiss === 'overlay') {
-    window.location.href = 'index.php?page';}})</script>";
+	echo "<script>Swal.fire({icon:'error',title:'ERROR SECURITY SITE',text:'ท่านยังไม่ได้สร้างไซต์งาน'}).then(()=>{window.location.href='index.php?page';});</script>";
 	
 	
 	
@@ -24,7 +22,7 @@ $secu=mysql_fetch_array(mysql_query("SELECT admin_pin FROM mt_config"));
 			
         if($new!=$con){
 
-			echo "<script language='javascript'>swal('รหัสผ่านใหม่ไม่ตรงกัน!','ลองอีกครั้ง','error')</script>";
+			echo "<script>Swal.fire({icon:'error',title:'รหัสผ่านใหม่ไม่ตรงกัน!',text:'ลองอีกครั้ง'}).then(()=>{window.location.href='index.php?page=security_site';});</script>";
 			
 		}else{
     $sql=mysql_query("SELECT * FROM mt_config where customer_pin='".$_REQUEST['new']."' or user_pin='".$_REQUEST['new']."'");
@@ -33,37 +31,33 @@ $secu=mysql_fetch_array(mysql_query("SELECT admin_pin FROM mt_config"));
              $show_adminPIN=$new1;if($new1==""){$show_adminPIN="ว่าง";}
             if($new1==""){$new1="000000000";}
 			mysql_query("UPDATE mt_config SET admin_pin='".md5($new1)."'");
-			echo "<script language='javascript'>swal('บันทึกค่าสำเร็จแล้ว','รหัส ".$_SESSION['APIUser']." PIN คือ ".$show_adminPIN." ออกจากระบบ','success').then(function () {
-    window.location.href = '../admin/logout.php';}, function (dismiss) {
-  if (dismiss === 'overlay') {
-    window.location.href = '../admin/logout.php';
-   }})</script>";
+                        echo "<script>Swal.fire({icon:'success',title:'บันทึกค่าสำเร็จแล้ว',text:'รหัส ".$_SESSION['APIUser']." PIN คือ ".$show_adminPIN." ออกจากระบบ'}).then(()=>{window.location.href='../admin/logout.php';});</script>";
           exit(0);
-	 }else{echo "<script language='javascript'>swal('ผิดพลาด!','กรุณาลองอีกครั้ง','error')</script>";}
+	 }else{echo "<script>Swal.fire({icon:'error',title:'ผิดพลาด!',text:'กรุณาลองอีกครั้ง'}).then(()=>{window.location.href='index.php?page=security_site';});</script>";}
 }
 }else{
 
 		$change=mysql_query("SELECT * FROM mt_config WHERE admin_pin='".$old."'");
-		$num_pin=mysql_num_rows($change);		
-		if($num_pin==0){
-			echo "<script language='javascript'>swal('รหัสผ่านเก่าไม่ถูกต้อง!','ลองอีกครั้ง!','error')</script>";
-			
-		}else if($new!=$con){
-			echo "<script language='javascript'>swal('รหัสผ่านใหม่ไม่ตรงกัน!','ลองอีกครั้ง!','error')</script>";
-		
-		}else{
-			$show_adminPIN=$new1;if($new1==""){$show_adminPIN="ว่าง";}
-			if($new1==""){$new1="000000000";}
-			mysql_query("UPDATE mt_config SET admin_pin='".md5($new1)."'");
-			echo "<script language='javascript'>swal('บันทึกค่าสำเร็จแล้ว!','รหัส ".$_SESSION['APIUser']." PIN คือ ".$show_adminPIN." ออกจากระบบ','success').then(function () {
-    window.location.href = '../admin/logout.php';}, function (dismiss) {
-  if (dismiss === 'overlay') {
-    window.location.href = '../admin/logout.php';
-   }})</script>";
+                $num_pin=mysql_num_rows($change);
+                if($num_pin==0){
+                        echo "<script>Swal.fire({icon:'error',title:'รหัสผ่านเก่าไม่ถูกต้อง!',text:'ลองอีกครั้ง!'}).then(()=>{window.location.href='index.php?page=security_site';});</script>";
 
 			
 			exit(0);
 		}
+        }else if($new!=$con){
+                        echo "<script>Swal.fire({icon:'error',title:'รหัสผ่านใหม่ไม่ตรงกัน!',text:'ลองอีกครั้ง!'}).then(()=>{window.location.href='index.php?page=security_site';});</script>";
+
+                }else{
+                        $show_adminPIN=$new1;if($new1==""){$show_adminPIN="ว่าง";}
+                        if($new1==""){$new1="000000000";}
+                        mysql_query("UPDATE mt_config SET admin_pin='".md5($new1)."'");
+                        echo "<script>Swal.fire({icon:'success',title:'บันทึกค่าสำเร็จแล้ว!',text:'รหัส ".$_SESSION['APIUser']." PIN คือ ".$show_adminPIN." ออกจากระบบ'}).then(()=>{window.location.href='../admin/logout.php';});</script>";
+
+
+                        exit(0);
+                
+                
 
 
 
@@ -127,8 +121,8 @@ $secu=mysql_fetch_array(mysql_query("SELECT admin_pin FROM mt_config"));
         
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: #f5f7fb;
-            padding: 20px;
+            background: transparent;
+            padding: 0;
             margin: 0;
         }
         
@@ -567,7 +561,7 @@ $secu=mysql_fetch_array(mysql_query("SELECT admin_pin FROM mt_config"));
 
         // submit validate (12 ตัวอักษรพอดี)
         document.getElementById('pin').addEventListener('submit', function(e) {
-            e.preventDefault();
+            
             const newVal = el('newPin').value.trim();
             const conVal = el('conPin').value.trim();
 
@@ -577,6 +571,7 @@ $secu=mysql_fetch_array(mysql_query("SELECT admin_pin FROM mt_config"));
             if (newVal !== conVal) errs.push('รหัสใหม่และยืนยันไม่ตรงกัน');
 
             if (errs.length) {
+                e.preventDefault();
                 Swal.fire({
                     icon: 'error',
                     title: 'บันทึกไม่สำเร็จ',
@@ -588,6 +583,7 @@ $secu=mysql_fetch_array(mysql_query("SELECT admin_pin FROM mt_config"));
 
             const s = scoreKey(newVal);
             if (s < 2) {
+                e.preventDefault();
                 Swal.fire({
                     icon: 'warning',
                     title: 'รหัสอ่อนเกินไป',
@@ -597,25 +593,11 @@ $secu=mysql_fetch_array(mysql_query("SELECT admin_pin FROM mt_config"));
                     cancelButtonText: 'แก้ไขก่อน'
                 }).then(r => {
                     if (r.isConfirmed) {
-                        // แสดงป๊อปอัพสำเร็จ
-                        Swal.fire({
-                            icon: 'success',
-                            title: 'บันทึกข้อมูลเรียบร้อยแล้ว',
-                            timer: 1800,
-                            showConfirmButton: false
-                        });
-                        // e.target.submit(); // ปิดการส่งฟอร์มจริง
+                        this.submit();
+                    
                     }
                 });
-            } else {
-                // บันทึกข้อมูลสำเร็จทันที ไม่ต้องยืนยัน
-                Swal.fire({
-                    icon: 'success',
-                    title: 'บันทึกข้อมูลเรียบร้อยแล้ว',
-                    timer: 1800,
-                    showConfirmButton: false
-                });
-                // e.target.submit(); // ปิดการส่งฟอร์มจริง
+            
             }
         });
 

@@ -106,8 +106,7 @@ echo "<script language='javascript'>swal('ERROR SITE PIN !','กำหนด Sit
           <i class="fa fa-plus"></i> เพิ่ม
         </button>
       <?php } else { ?>
-        <button id="btnAdd" class="btn btn-info btn-square"
-                onclick="document.getElementById('loginForm').submit();">
+        <button id="btnAdd" type="submit" form="loginForm" class="btn btn-info btn-square">
           <i class="fa fa-plus"></i> เพิ่ม
         </button>
       <?php } ?>
