@@ -1,70 +1,63 @@
 <?php
-$secu=mysql_fetch_array(mysql_query("SELECT admin_pin FROM mt_config"));
-	$ad_pin=$secu['admin_pin'];
-	$mdadmin_pin=md5($secu['admin_pin']);
-    $Empty_pin="000000000";
-	$mdEmpty_pin=md5($Empty_pin);
-	if(empty($ad_pin)){
-	echo "<script>Swal.fire({icon:'error',title:'ERROR SECURITY SITE',text:'ท่านยังไม่ได้สร้างไซต์งาน'}).then(()=>{window.location.href='index.php?page';});</script>";
-	
-	
-	
-	}else{
- 	if(!empty($_REQUEST['active'])){
+$secu = mysql_fetch_array(mysql_query("SELECT admin_pin FROM mt_config"));
+$ad_pin = $secu['admin_pin'];
 
+$Empty_pin = "000000000";
+$mdEmpty_pin = md5($Empty_pin);
+$is_default = ($ad_pin == $mdEmpty_pin);
 
-	    $old=md5($_REQUEST['old']);
-		$new=md5($_REQUEST['new']);
-		$new1=$_REQUEST['new'];
-		$con=md5($_REQUEST['con']);
-	
-	if($ad_pin==$mdEmpty_pin){
-			
-        if($new!=$con){
+if (empty($ad_pin)) {
+    echo "<script>Swal.fire({icon:'error',title:'ERROR SECURITY SITE',text:'ท่านยังไม่ได้สร้างไซต์งาน'}).then(()=>{window.location.href='index.php?page';});</script>";
+    return;
+} else {
+    if (!empty($_REQUEST['active'])) {
+        $old = isset($_REQUEST['old']) ? md5($_REQUEST['old']) : '';
+        $new = md5($_REQUEST['new']);
+        $new1 = $_REQUEST['new'];
+        $con = md5($_REQUEST['con']);
 
-			echo "<script>Swal.fire({icon:'error',title:'รหัสผ่านใหม่ไม่ตรงกัน!',text:'ลองอีกครั้ง'}).then(()=>{window.location.href='index.php?page=security_site';});</script>";
-			
-		}else{
-    $sql=mysql_query("SELECT * FROM mt_config where customer_pin='".$_REQUEST['new']."' or user_pin='".$_REQUEST['new']."'");
-	 $num=mysql_num_rows($sql);
-	 if($num==0){
-             $show_adminPIN=$new1;if($new1==""){$show_adminPIN="ว่าง";}
-            if($new1==""){$new1="000000000";}
-			mysql_query("UPDATE mt_config SET admin_pin='".md5($new1)."'");
-                        echo "<script>Swal.fire({icon:'success',title:'บันทึกค่าสำเร็จแล้ว',text:'รหัส ".$_SESSION['APIUser']." PIN คือ ".$show_adminPIN." ออกจากระบบ'}).then(()=>{window.location.href='../admin/logout.php';});</script>";
-          exit(0);
-	 }else{echo "<script>Swal.fire({icon:'error',title:'ผิดพลาด!',text:'กรุณาลองอีกครั้ง'}).then(()=>{window.location.href='index.php?page=security_site';});</script>";}
-}
-}else{
-
-		$change=mysql_query("SELECT * FROM mt_config WHERE admin_pin='".$old."'");
-                $num_pin=mysql_num_rows($change);
-                if($num_pin==0){
-                        echo "<script>Swal.fire({icon:'error',title:'รหัสผ่านเก่าไม่ถูกต้อง!',text:'ลองอีกครั้ง!'}).then(()=>{window.location.href='index.php?page=security_site';});</script>";
-
-			
-			exit(0);
-		}
-        }else if($new!=$con){
-                        echo "<script>Swal.fire({icon:'error',title:'รหัสผ่านใหม่ไม่ตรงกัน!',text:'ลองอีกครั้ง!'}).then(()=>{window.location.href='index.php?page=security_site';});</script>";
-
-                }else{
-                        $show_adminPIN=$new1;if($new1==""){$show_adminPIN="ว่าง";}
-                        if($new1==""){$new1="000000000";}
-                        mysql_query("UPDATE mt_config SET admin_pin='".md5($new1)."'");
-                        echo "<script>Swal.fire({icon:'success',title:'บันทึกค่าสำเร็จแล้ว!',text:'รหัส ".$_SESSION['APIUser']." PIN คือ ".$show_adminPIN." ออกจากระบบ'}).then(()=>{window.location.href='../admin/logout.php';});</script>";
-
-
-                        exit(0);
-                
-                
-
+        if ($ad_pin == $mdEmpty_pin) {
+            if ($new != $con) {
+                echo "<script>Swal.fire({icon:'error',title:'รหัสผ่านใหม่ไม่ตรงกัน!',text:'ลองอีกครั้ง'}).then(()=>{window.location.href='index.php?page=security_site';});</script>";
+                return;
+            } else {
+                $sql = mysql_query("SELECT * FROM mt_config where customer_pin='".$_REQUEST['new']."' or user_pin='".$_REQUEST['new']."'");
+                $num = mysql_num_rows($sql);
+                if ($num == 0) {
+                    $show_adminPIN = $new1; if ($new1=="") { $show_adminPIN="ว่าง"; }
+                    if ($new1=="") { $new1="000000000"; }
+                    mysql_query("UPDATE mt_config SET admin_pin='".md5($new1)."'");
+                    echo "<script>Swal.fire({icon:'success',title:'บันทึกค่าสำเร็จแล้ว',text:'รหัส ".$_SESSION['APIUser']." PIN คือ ".$show_adminPIN." ออกจากระบบ'}).then(()=>{window.location.href='../admin/logout.php';});</script>";
+                    return;
+                } else {
+                    echo "<script>Swal.fire({icon:'error',title:'ผิดพลาด!',text:'กรุณาลองอีกครั้ง'}).then(()=>{window.location.href='index.php?page=security_site';});</script>";
+                    return;
+                }
+            }
+        } else {
+            $change = mysql_query("SELECT * FROM mt_config WHERE admin_pin='".$old."'");
+            $num_pin = mysql_num_rows($change);
+            if ($num_pin == 0) {
+                echo "<script>Swal.fire({icon:'error',title:'รหัสผ่านเก่าไม่ถูกต้อง!',text:'ลองอีกครั้ง!'}).then(()=>{window.location.href='index.php?page=security_site';});</script>";
+                return;
+            } elseif ($new != $con) {
+                echo "<script>Swal.fire({icon:'error',title:'รหัสผ่านใหม่ไม่ตรงกัน!',text:'ลองอีกครั้ง!'}).then(()=>{window.location.href='index.php?page=security_site';});</script>";
+                return;
+            } else {
+                $show_adminPIN = $new1; if ($new1=="") { $show_adminPIN="ว่าง"; }
+                if ($new1=="") { $new1="000000000"; }
+                mysql_query("UPDATE mt_config SET admin_pin='".md5($new1)."'");
+                echo "<script>Swal.fire({icon:'success',title:'บันทึกค่าสำเร็จแล้ว!',text:'รหัส ".$_SESSION['APIUser']." PIN คือ ".$show_adminPIN." ออกจากระบบ'}).then(()=>{window.location.href='../admin/logout.php';});</script>";
+                return;
+            }
+        }
+    }
 
 
 }
 
 
-}}	
+
 						  
 		?>
 
@@ -392,6 +385,16 @@ $secu=mysql_fetch_array(mysql_query("SELECT admin_pin FROM mt_config"));
             </div>
 
             <form id="pin" class="sec-form" method="POST" action="">
+                <?php if (!$is_default): ?>
+                <div class="form-group pin-input">
+                    <label class="form-label">รหัสเดิม</label>
+                    <div class="input-wrap">
+                        <input type="password" class="form-control" name="old" id="oldPin" minlength="12" maxlength="12" placeholder="12 ตัวอักษรพอดี" required>
+                        <button type="button" class="toggle-eye" data-target="oldPin" aria-label="แสดง/ซ่อนรหัส"><i class="fa fa-eye"></i></button>
+                    </div>
+                    <div class="hint">ระบุรหัสเดิม</div>
+                </div>
+<?php endif; ?>
                 <div class="form-group pin-input">
                     <label class="form-label">รหัสใหม่</label>
                     <div class="input-wrap">
@@ -564,8 +567,11 @@ $secu=mysql_fetch_array(mysql_query("SELECT admin_pin FROM mt_config"));
             
             const newVal = el('newPin').value.trim();
             const conVal = el('conPin').value.trim();
+            const oldEl = el('oldPin');
+            const oldVal = oldEl ? oldEl.value.trim() : '';
 
             const errs = [];
+            if (oldEl && oldVal.length !== 12) errs.push('รหัสเดิมต้องยาว 12 ตัวอักษรพอดี');
             if (newVal.length !== 12) errs.push('รหัสใหม่ต้องยาว 12 ตัวอักษรพอดี');
             if (conVal.length !== 12) errs.push('ยืนยันรหัสต้องยาว 12 ตัวอักษรพอดี');
             if (newVal !== conVal) errs.push('รหัสใหม่และยืนยันไม่ตรงกัน');

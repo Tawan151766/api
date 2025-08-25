@@ -64,7 +64,7 @@ CREATE TABLE `mt_config` (
 
 -- Dumping data for table `mt_config`
 INSERT INTO `mt_config` (`mt_num`, `mt_user`, `mt_pass`, `mt_ip`, `port_api`, `port_web`, `site_name`, `admin_pin`, `customer_pin`, `user_pin`, `date_update`, `mt_id`) VALUES
-(1, 'apiuser', 'apipass', '192.168.1.1', 8728, 80, 'Test Site', 'admin123', 'cust123', 'user123', '2023-01-01 00:00:00', 1);
+(1, 'apiuser', 'apipass', '192.168.1.1', 8728, 80, 'Test Site', '4c93008615c2d041e33ebac605d14b5b', 'cust123', 'user123', '2023-01-01 00:00:00', 1);
 
 --
 -- Table structure for table `mt_edit`
