@@ -7,7 +7,7 @@
    window.history.back();}, function (dismiss) {if (dismiss === 'overlay') {
     window.history.back();}})</script>";
 
-						exit();
+						return;
   
   
   }else{
@@ -28,13 +28,13 @@
   if (dismiss === 'overlay') {
     window.location.href = 'index.php';
    }})</script>";
-		exit();
+		return;
     }else{
 	 echo "<script language='javascript'>swal('ERROR SITE PIN !','กรุณาแก้ไขไซต์ PIN ของท่านใหม่','error').then(function () {
    window.history.back();}, function (dismiss) {if (dismiss === 'overlay') {
     window.history.back();}})</script>";
 
-						exit();
+						return;
 	 
 	 
 	 }
