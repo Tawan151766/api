@@ -7,7 +7,7 @@ $mdEmpty_pin = md5($Empty_pin);
 $is_default = ($ad_pin == $mdEmpty_pin);
 
 if (empty($ad_pin)) {
-    echo "<script>Swal.fire({icon:'error',title:'ERROR SECURITY SITE',text:'ท่านยังไม่ได้สร้างไซต์งาน'}).then(()=>{window.location.href='index.php?page';});</script>";
+    echo "<script>Swal.fire({icon:'warning',title:'ERROR SECURITY SITE',text:'ท่านยังไม่ได้สร้างไซต์งาน'}).then(()=>{window.location.href='index.php?page';});</script>";
     return;
 } else {
     if (!empty($_REQUEST['active'])) {
@@ -18,7 +18,7 @@ if (empty($ad_pin)) {
 
         if ($ad_pin == $mdEmpty_pin) {
             if ($new != $con) {
-                echo "<script>Swal.fire({icon:'error',title:'รหัสผ่านใหม่ไม่ตรงกัน!',text:'ลองอีกครั้ง'}).then(()=>{window.location.href='index.php?page=security_site';});</script>";
+                echo "<script>Swal.fire({icon:'warning',title:'รหัสผ่านใหม่ไม่ตรงกัน!',text:'ลองอีกครั้ง'}).then(()=>{window.location.href='index.php?page=security_site';});</script>";
                 return;
             } else {
                 $sql = mysql_query("SELECT * FROM mt_config where customer_pin='".$_REQUEST['new']."' or user_pin='".$_REQUEST['new']."'");
@@ -30,7 +30,7 @@ if (empty($ad_pin)) {
                     echo "<script>Swal.fire({icon:'success',title:'บันทึกค่าสำเร็จแล้ว',text:'รหัส ".$_SESSION['APIUser']." PIN คือ ".$show_adminPIN." ออกจากระบบ'}).then(()=>{window.location.href='../admin/logout.php';});</script>";
                     return;
                 } else {
-                    echo "<script>Swal.fire({icon:'error',title:'ผิดพลาด!',text:'กรุณาลองอีกครั้ง'}).then(()=>{window.location.href='index.php?page=security_site';});</script>";
+                    echo "<script>Swal.fire({icon:'warning',title:'ผิดพลาด!',text:'กรุณาลองอีกครั้ง'}).then(()=>{window.location.href='index.php?page=security_site';});</script>";
                     return;
                 }
             }
@@ -38,10 +38,10 @@ if (empty($ad_pin)) {
             $change = mysql_query("SELECT * FROM mt_config WHERE admin_pin='".$old."'");
             $num_pin = mysql_num_rows($change);
             if ($num_pin == 0) {
-                echo "<script>Swal.fire({icon:'error',title:'รหัสผ่านเก่าไม่ถูกต้อง!',text:'ลองอีกครั้ง!'}).then(()=>{window.location.href='index.php?page=security_site';});</script>";
+                echo "<script>Swal.fire({icon:'warning',title:'รหัสผ่านเก่าไม่ถูกต้อง!',text:'ลองอีกครั้ง!'}).then(()=>{window.location.href='index.php?page=security_site';});</script>";
                 return;
             } elseif ($new != $con) {
-                echo "<script>Swal.fire({icon:'error',title:'รหัสผ่านใหม่ไม่ตรงกัน!',text:'ลองอีกครั้ง!'}).then(()=>{window.location.href='index.php?page=security_site';});</script>";
+                echo "<script>Swal.fire({icon:'warning',title:'รหัสผ่านใหม่ไม่ตรงกัน!',text:'ลองอีกครั้ง!'}).then(()=>{window.location.href='index.php?page=security_site';});</script>";
                 return;
             } else {
                 $show_adminPIN = $new1; if ($new1=="") { $show_adminPIN="ว่าง"; }
@@ -70,37 +70,45 @@ if (empty($ad_pin)) {
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
     <style>
-        .swal2-popup.swal-lg {
+        .swal2-icon.swal2-warning {
+  font-size: 2.5rem !important; /* ขนาดไอคอนเล็กลง */
+  width: 3.5em !important;
+  height: 3.5em !important;
+  margin: 0 auto 1.2em auto !important; /* เพิ่มช่องว่างด้านล่าง */
+}
+        
+        
+        .swal-popup.swal-lg {
     width: 40em !important;
     max-width: 90vw;
     padding: 2rem !important;
     border-radius: 16px !important;
     font-size: 1.6rem !important;
   }
-  .swal2-title.swal-title-lg {
+  .swal-title.swal-title-lg {
     font-size: 2rem !important;
     margin-bottom: 1.5rem !important;
   }
-  .swal2-actions.swal-actions-equal {
+  .swal-actions.swal-actions-equal {
     display: flex !important;
     justify-content: center;
     align-items: center;
     gap: 1rem !important;
     margin-top: 1.5rem !important;
   }
-  .swal2-styled.btn-equal {
+  .swal-styled.btn-equal {
     min-width: 12rem; 
     height: 3rem;
     border-radius: 12px !important;
     font-size: 1rem; 
     font-weight: 600;
   }
-  .swal2-styled.btn-confirm-gray {
+  .swal-styled.btn-confirm-gray {
     background: #6c757d !important;
     color: #fff !important;
     border: none !important;
   }
-  .swal2-styled.btn-cancel-red {
+  .swal-styled.btn-cancel-red {
     background: #e53935 !important;
     color: #fff !important;
     border: none !important;
@@ -349,24 +357,24 @@ if (empty($ad_pin)) {
         }
         
         /* เพิ่มสไตล์สำหรับปรับขนาด Pop-up */
-        .swal2-popup {
+        .swal-popup {
             font-size: 1.6rem !important;
             padding: 2rem !important;
             width: 40em !important;
             border-radius: 16px !important;
         }
         
-        .swal2-title {
+        .swal-title {
             font-size: 2rem !important;
             margin-bottom: 1.5rem !important;
         }
         
-        .swal2-actions {
+        .swal-actions {
             margin-top: 1.5rem !important;
             gap: 1rem !important;
         }
         
-        .swal2-confirm, .swal2-cancel {
+        .swal-confirm, .swal-cancel {
             padding: 1rem 2rem !important;
             font-size: 1.6rem !important;
             border-radius: 12px !important;
@@ -579,7 +587,7 @@ if (empty($ad_pin)) {
             if (errs.length) {
                 e.preventDefault();
                 Swal.fire({
-                    icon: 'error',
+                    icon: 'warning',
                     title: 'บันทึกไม่สำเร็จ',
                     html: '<ul style="text-align:left;margin:0 8px">' + errs.map(x => `<li>${x}</li>`).join('') + '</ul>',
                     confirmButtonText: 'ตกลง'
