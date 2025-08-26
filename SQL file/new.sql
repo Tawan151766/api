@@ -62,6 +62,10 @@ CREATE TABLE `mt_config` (
 
 -- --------------------------------------------------------
 
+-- Dumping data for table `mt_config`
+INSERT INTO `mt_config` (`mt_num`, `mt_user`, `mt_pass`, `mt_ip`, `port_api`, `port_web`, `site_name`, `admin_pin`, `customer_pin`, `user_pin`, `date_update`, `mt_id`) VALUES
+(1, 'apiuser', 'apipass', '192.168.1.1', 8728, 80, 'Test Site', '4c93008615c2d041e33ebac605d14b5b', 'cust123', 'user123', '2023-01-01 00:00:00', 1);
+
 --
 -- Table structure for table `mt_edit`
 --
@@ -74,6 +78,10 @@ CREATE TABLE `mt_edit` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
+
+-- Dumping data for table `mt_edit`
+INSERT INTO `mt_edit` (`number`, `user`, `group_code`, `mt_id`) VALUES
+(1, 'testuser', 'G1', '1');
 
 --
 -- Table structure for table `mt_gen`
@@ -99,6 +107,10 @@ CREATE TABLE `mt_gen` (
 
 -- --------------------------------------------------------
 
+-- Dumping data for table `mt_gen`
+INSERT INTO `mt_gen` (`user`, `pass`, `limit_uptime`, `profile`, `server_pro`, `mac_address`, `ip_address`, `email`, `comment`, `csv_code`, `money_code`, `group_name`, `group_code`, `date`, `mt_id`) VALUES
+('user1', 'password', '1h', 'default', 'server1', '00:11:22:33:44:55', '10.0.0.1', 'user1@example.com', 'test account', 'csv1', 'money1', 'groupA', 'G1', '2023-01-01 00:00:00', '1');
+
 --
 -- Table structure for table `mt_money`
 --
@@ -114,6 +126,9 @@ CREATE TABLE `mt_money` (
   `mt_id` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+-- Dumping data for table `mt_money`
+INSERT INTO `mt_money` (`utc_time_for_chart`, `money_code`, `date`, `month_code`, `month`, `tickets`, `money`, `mt_id`) VALUES
+('1672531200', 'money1', '2023-01-01', '2023-01', 'Jan', '5', '100', '1');
 -- --------------------------------------------------------
 
 --
@@ -158,6 +173,10 @@ CREATE TABLE `mt_money_month` (
 
 -- --------------------------------------------------------
 
+-- Dumping data for table `mt_money_month`
+INSERT INTO `mt_money_month` (`month_code`, `day_01`, `day_02`, `day_03`, `day_04`, `day_05`, `day_06`, `day_07`, `day_08`, `day_09`, `day_10`, `day_11`, `day_12`, `day_13`, `day_14`, `day_15`, `day_16`, `day_17`, `day_18`, `day_19`, `day_20`, `day_21`, `day_22`, `day_23`, `day_24`, `day_25`, `day_26`, `day_27`, `day_28`, `day_29`, `day_30`, `day_31`, `mt_id`) VALUES
+('2023-01', '10', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '1');
+
 --
 -- Table structure for table `mt_money_year`
 --
@@ -180,6 +199,9 @@ CREATE TABLE `mt_money_year` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
+-- Dumping data for table `mt_money_year`
+INSERT INTO `mt_money_year` (`year`, `jan`, `feb`, `mar`, `apr`, `may`, `jun`, `jul`, `aug`, `sep`, `oct`, `nov`, `december`, `mt_id`) VALUES
+('2023', '100', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '1');
 
 --
 -- Table structure for table `mt_profile`
@@ -208,6 +230,10 @@ CREATE TABLE `mt_profile` (
 
 -- --------------------------------------------------------
 
+-- Dumping data for table `mt_profile`
+INSERT INTO `mt_profile` (`pro_name`, `pro_session`, `pro_idle`, `pro_keepalive`, `pro_autorefresh`, `pro_expire`, `pro_users`, `pro_limit`, `pro_price`, `vat`, `package_name`, `card_name`, `home_page`, `time_limit`, `phone`, `server_ip`, `color`, `mt_id`) VALUES
+('basic', '1h', '5m', '30s', '1m', '1d', '1', 'none', 100, 7, 'Basic Package', 'Card Basic', 'home.html', '1h', '123456789', '192.168.1.1', '#FFFFFF', '1');
+
 --
 -- Table structure for table `pppoe_gen`
 --
@@ -228,6 +254,10 @@ CREATE TABLE `pppoe_gen` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
+
+-- Dumping data for table `pppoe_gen`
+INSERT INTO `pppoe_gen` (`user`, `pass`, `profile`, `caller_id`, `address`, `comment`, `csv_code`, `money_code`, `group_name`, `group_code`, `date`, `mt_id`) VALUES
+('ppuser', 'pppass', 'default', '00:11:22:33:44:55', '10.0.0.2', 'pppoe test', 'csv2', 'money2', 'ppgroup', 'PG1', '2023-01-01 00:00:00', '1');
 
 --
 -- Table structure for table `pppoe_money`
