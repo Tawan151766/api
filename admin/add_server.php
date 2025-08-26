@@ -94,7 +94,6 @@ echo "<script language='javascript'>swal('ERROR SITE PIN !','กำหนด Sit
 
             <div class="modal-body">
 
-  <!-- แถวบน: จอดำ + ปุ่ม -->
   <div class="monitor-row">
     <div class="monitor-left">
       <div class="top-monitor test-connect"></div>
@@ -128,7 +127,6 @@ echo "<script language='javascript'>swal('ERROR SITE PIN !','กำหนด Sit
     </div>
   </div>
 
-  <!-- แถวล่าง: ฟอร์มเต็มความกว้าง -->
   <div class="well">
     <form id="loginForm" method="POST" action="">
       <div class="row">
@@ -220,7 +218,6 @@ echo "<script language='javascript'>swal('ERROR SITE PIN !','กำหนด Sit
         <?php }} ?>
       </div>
 
-      <!-- ปุ่มจริงให้สคริปต์เดิมเรียกใช้ -->
       <button type="button" class="btn btn-success hidden-inline test-btn">
         <i class="fa fa-cloud-download"></i> ทดสอบการเชื่อมต่อ
       </button>

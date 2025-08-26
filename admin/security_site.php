@@ -71,10 +71,10 @@ if (empty($ad_pin)) {
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
     <style>
         .swal2-icon.swal2-warning {
-  font-size: 2.5rem !important; /* ขนาดไอคอนเล็กลง */
+  font-size: 2.5rem !important; 
   width: 3.5em !important;
   height: 3.5em !important;
-  margin: 0 auto 1.2em auto !important; /* เพิ่มช่องว่างด้านล่าง */
+  margin: 0 auto 1.2em auto !important; 
 }
         
         
@@ -305,7 +305,6 @@ if (empty($ad_pin)) {
             filter: brightness(1.06)
         }
         
-        /* icon ตาอยู่ในช่องและใหญ่ขึ้น */
         .pin-input .input-wrap {
             position: relative
         }
@@ -489,7 +488,7 @@ if (empty($ad_pin)) {
             });
         });
 
-        // generator (ยาว 12 เท่านั้น)
+        // generator 
         function getRand(max) {
             if (window.crypto && crypto.getRandomValues) {
                 const a = new Uint32Array(1);

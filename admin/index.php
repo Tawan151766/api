@@ -80,6 +80,119 @@ function is_active($key, $current){ return $current === $key ? 'active' : ''; }
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     
     <style>
+
+.sidebar-menu > li.header {
+    background: linear-gradient(135deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.05) 100%) !important;
+    color: rgba(255,255,255,0.8) !important;
+    font-weight: 600;
+    font-size: 11px;
+    letter-spacing: 2px;
+    padding: 12px 20px !important;
+    margin: 15px 10px 10px 10px !important;
+    border-radius: 12px !important;
+    border: 1px solid rgba(255,255,255,0.1);
+    backdrop-filter: blur(10px);
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.sidebar-menu > li.header::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, 
+        transparent,
+        rgba(255,255,255,0.2),
+        transparent
+    );
+    transition: left 0.7s;
+}
+
+.sidebar-menu > li.header:hover::before {
+    left: 100%;
+}
+
+.sidebar-menu > li.header:hover {
+    background: linear-gradient(135deg, rgba(255,255,255,0.15) 0%, rgba(255,255,255,0.08) 100%) !important;
+    transform: translateX(3px);
+    border-color: rgba(255,255,255,0.2);
+    color: white !important;
+}
+
+
+.sidebar-menu > li.header {
+    animation: slideInFromLeft 0.5s ease-out;
+}
+
+@keyframes slideInFromLeft {
+    from {
+        opacity: 0;
+        transform: translateX(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+.sidebar-menu > li:not(.header) {
+    margin: 0 10px;
+}
+
+.sidebar-menu > li:not(.header) > a {
+    border-radius: 10px !important;
+    margin: 4px 0 !important;
+    transition: all 0.3s ease;
+}
+
+.sidebar-collapse .sidebar-menu > li.header {
+    margin: 10px 5px !important;
+    padding: 10px !important;
+    font-size: 9px !important;
+    letter-spacing: 1px;
+}
+
+.sidebar-collapse .sidebar-menu > li.header::after {
+    display: none;
+}
+
+@media (prefers-color-scheme: dark) {
+    .sidebar-menu > li.header {
+        background: linear-gradient(135deg, rgba(0,0,0,0.3) 0%, rgba(0,0,0,0.1) 100%) !important;
+        border-color: rgba(255,255,255,0.05);
+    }
+}
+
+/* Alternative style 1: Gradient Border */
+.sidebar-menu > li.header.style-gradient {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%) !important;
+    color: white !important;
+    box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+}
+
+/* Alternative style 2: Glassmorphism */
+.sidebar-menu > li.header.style-glass {
+    background: rgba(255, 255, 255, 0.1) !important;
+    backdrop-filter: blur(10px) saturate(180%);
+    -webkit-backdrop-filter: blur(10px) saturate(180%);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+}
+
+/* Alternative style 3: Neon Glow */
+.sidebar-menu > li.header.style-neon {
+    background: rgba(0, 60, 127, 0.2) !important;
+    border: 1px solid #0072BC;
+    color: #00d4ff !important;
+    text-shadow: 0 0 10px rgba(0, 212, 255, 0.5);
+    box-shadow: 
+        0 0 20px rgba(0, 114, 188, 0.3),
+        inset 0 0 20px rgba(0, 114, 188, 0.1);
+}
         :root {
             --primary-dark: #003C7F;
             --primary-blue: #0072BC;
@@ -101,12 +214,11 @@ function is_active($key, $current){ return $current === $key ? 'active' : ''; }
             min-height: 100vh;
         }
 
-        /* ขนาด sidebar แบบย่อ */
 .sidebar-mini.sidebar-collapse .main-sidebar {
-    width: 80px !important;  /* << เปลี่ยนตรงนี้ เช่น 60, 80, 100 px */
+    width: 80px !important;  
 }
 .sidebar-mini.sidebar-collapse .content-wrapper {
-    margin-left: 80px !important; /* ให้ตรงกับด้านบน */
+    margin-left: 80px !important; 
 }
 
 
