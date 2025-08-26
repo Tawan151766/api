@@ -1,12 +1,13 @@
 <?php	
 	if(!empty($_REQUEST['ip'])){
 
-	if((empty($_REQUEST['userPin']) && empty($_REQUEST['customerPin']))||(($_REQUEST['userPin']) == ($_REQUEST['customerPin']))){
+	    if((empty($_REQUEST['userPin']) && empty($_REQUEST['customerPin']))||(($_REQUEST['userPin']) == ($_REQUEST['customerPin']))){
 echo "<script language='javascript'>swal('ERROR SITE PIN !','กำหนด Site PIN อย่างน้อย จำนวน 1 ไซต์ และไม่เหมือนกัน','error').then(function () {
    window.history.back();}, function (dismiss) {if (dismiss === 'overlay') {
     window.history.back();}})</script>";
 
-						exit();
+                        return;
+	
   
   }else{
          $ip = $_REQUEST['ip'];
@@ -30,24 +31,14 @@ $sql=mysql_query("SELECT * FROM mt_config where admin_pin='".md5($cus_pin)."' or
 
 			  $id = $_GET['id'];
 		mysql_query("INSERT INTO mt_config VALUE('','$user','$pass','$ip','$papi','$pweb','$sitename','$admin_pin','$cus_pin','$user_pin','".date("Y-m-d H:i:s")."','$id')");
-		
-		//echo "<script language='javascript'>alert('Save Done')</script>";
-		//echo "<meta http-equiv=\"refresh\" content=\"0;url=index.php\">";
-		echo "<script language='javascript'>swal('Save Done!','เพิ่ม ".$user." สำเร็จแล้ว!','success').then(
-  function () {
-    window.location.href = 'index.php';
-}, function (dismiss) {
-  if (dismiss === 'overlay') {
-    window.location.href = 'index.php';
-   }})</script>";
-		exit(0);
-
+                $added_user = $user;
 		 }else{
-	 echo "<script language='javascript'>swal('ERROR SITE PIN !','Site Pin ซํ้ากับ Classอื่น.','error').then(function () {
+	        echo "<script language='javascript'>swal('ERROR SITE PIN !','Site Pin ซํ้ากับ Classอื่น.','error').then(function () {
    window.history.back();}, function (dismiss) {if (dismiss === 'overlay') {
     window.history.back();}})</script>";
 
-						exit();
+                        return;
+	
 	 
 	 
 	 }
@@ -358,3 +349,17 @@ $sql=mysql_query("SELECT * FROM mt_config WHERE ".$session_login."='".$_SESSION[
                 <!-- <script src="../assets/jQuery/jquery-3.2.1.min.js"></script> -->
                 <!--test-con 1 -->
     </section>
+<?php if(isset($added_user)){ ?>
+<script>
+var loader=document.getElementById('pageLoading');
+if(loader){loader.style.opacity='0';loader.style.display='none';}
+Swal.fire({
+    title: 'Save Done!',
+    text: 'เพิ่ม <?php echo $added_user; ?> สำเร็จแล้ว!',
+    
+    timer: 2000,
+    showConfirmButton: false
+});
+setTimeout(function(){ window.location='index.php'; },2000);
+</script>
+<?php } ?>

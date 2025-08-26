@@ -3,9 +3,10 @@
 	if(!empty($_REQUEST['ip'])){
 	
   if(empty($_REQUEST['customerPin']) && empty($_REQUEST['userPin'])){
-   echo "<script language='javascript'>swal('EMPTY SITE PIN !','ต้องกำหนด Site PIN อย่างน้อย จำนวน 1 ไซต์','error').then(function () {
-   window.history.back();}, function (dismiss) {if (dismiss === 'overlay') {
-    window.history.back();}})</script>";
+   echo "<script>
+Swal.fire({icon:'error',title:'EMPTY SITE PIN !',text:'ต้องกำหนด Site PIN อย่างน้อย จำนวน 1 ไซต์'})
+.then(()=>{window.history.back();});
+</script>";
 
 						return;
   
@@ -18,21 +19,16 @@
 	    if(!empty($user_pin)){$userPIN_data="or customer_pin='".$user_pin."'";}
 
 	$sql=mysql_query("SELECT * FROM mt_config where admin_pin='".md5($_REQUEST['userPin'])."'or admin_pin='".md5($_REQUEST['customerPin'])."' ".$cusPIN_data." ".$userPIN_data."");
-	 $num=mysql_num_rows($sql);
-	 if($num==0){
-		mysql_query("UPDATE mt_config SET mt_ip='".$_REQUEST['ip']."', mt_user='".$_REQUEST['username']."', mt_pass='".$_REQUEST['password']."', port_api='".$_REQUEST['portapi']."', port_web='".$_REQUEST['portweb']."',customer_pin='".$_REQUEST['customerPin']."',user_pin='".$_REQUEST['userPin']."',site_name='".$_REQUEST['siteName']."' WHERE mt_num='".$_GET['id']."'");
-		//echo "<script language='javascript'>alert('Save Done')</script>";
-		//echo "<meta http-equiv=\"refresh\" content=\"0;url=index.php\">";
-		echo "<script language='javascript'>swal('บันทึกสำเร็จ!','แก้ไข SERVER สำเร็จแล้ว','success').then(function () {
-    window.location.href = 'index.php';}, function (dismiss) {
-  if (dismiss === 'overlay') {
-    window.location.href = 'index.php';
-   }})</script>";
-		return;
+         $num=mysql_num_rows($sql);
+         if($num==0){
+                mysql_query("UPDATE mt_config SET mt_ip='".$_REQUEST['ip']."', mt_user='".$_REQUEST['username']."', mt_pass='".$_REQUEST['password']."', port_api='".$_REQUEST['portapi']."', port_web='".$_REQUEST['portweb']."',customer_pin='".$_REQUEST['customerPin']."',user_pin='".$_REQUEST['userPin']."',site_name='".$_REQUEST['siteName']."' WHERE mt_num='".$_GET['id']."'");
+                echo "<script>window.location='index.php?page=server';</script>";
+                return;
     }else{
-	 echo "<script language='javascript'>swal('ERROR SITE PIN !','กรุณาแก้ไขไซต์ PIN ของท่านใหม่','error').then(function () {
-   window.history.back();}, function (dismiss) {if (dismiss === 'overlay') {
-    window.history.back();}})</script>";
+	 echo "<script>
+Swal.fire({icon:'error',title:'ERROR SITE PIN !',text:'กรุณาแก้ไขไซต์ PIN ของท่านใหม่'})
+.then(()=>{window.history.back();});
+</script>";
 
 						return;
 	 
@@ -40,6 +36,8 @@
 	 }
 	}}									   								
 ?>
+
+
     <section class="content">
 
 

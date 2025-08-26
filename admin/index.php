@@ -741,14 +741,14 @@ function confirmLogout(e){
 
     <script type="text/javascript">
         // Page loading animation
-        window.addEventListener('load', function() {
-            setTimeout(function() {
-                document.getElementById('pageLoading').style.opacity = '0';
-                setTimeout(function() {
-                    document.getElementById('pageLoading').style.display = 'none';
-                }, 200);
-            }, 200);
-        });
+        function hideLoader(){
+            var loader = document.getElementById('pageLoading');
+            if(!loader) return;
+            loader.style.opacity = '0';
+            setTimeout(function(){ loader.style.display = 'none'; },200);
+        }
+        document.addEventListener('DOMContentLoaded', hideLoader);
+        window.addEventListener('load', hideLoader);
 
         // Initialize date/time
         window.onload = date_time('date_time');
