@@ -405,7 +405,7 @@ if(!empty($_REQUEST['old'])){
                 <div class="shield-icon">
                     <i class="fas fa-shield-alt"></i>
                 </div>
-                <h3>เปลี่ยนรหัสผ่าน API</h3>
+                <h3>เปลี่ยนรหัสผ่าน User</h3>
             </div>
             
             <div class="password-body">
