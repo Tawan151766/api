@@ -64,7 +64,7 @@ function is_active($key, $current){ return $current === $key ? 'active' : ''; }
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>ROCKET API - Modern Dashboard</title>
-    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     
     <!-- External CSS -->
     <link rel="stylesheet" href="../plugins/bootstrap/cssUI/bootstrap.min.css">
@@ -534,6 +534,11 @@ function is_active($key, $current){ return $current === $key ? 'active' : ''; }
 .monitor-right{width:280px;display:flex;flex-direction:column;gap:16px;}
 .btn-square{height:120px;border-radius:16px;font-size:18px;font-weight:600;display:flex;align-items:center;justify-content:center;}
 .btn-square i{margin-right:8px;}
+@media (max-width:767px){
+    .monitor-row{flex-direction:column;}
+    .monitor-right{width:100%;margin-top:20px;}
+    .btn-square{height:56px;border-radius:8px;}
+}
 .hidden-inline{display:none !important;}
     </style>
 </head>
@@ -805,6 +810,26 @@ function confirmLogout(e){
                 }
             );
         });
+    </script>
+    <script>
+    function relocateButtons(){
+        document.querySelectorAll('.monitor-row').forEach(function(row){
+            var buttons=row.querySelector('.monitor-right');
+            var form=row.nextElementSibling;
+            if(!buttons||!form) return;
+            if(window.innerWidth<=767){
+                if(buttons.parentNode===row){
+                    form.after(buttons);
+                }
+            }else{
+                if(buttons.parentNode!==row){
+                    row.appendChild(buttons);
+                }
+            }
+        });
+    }
+    window.addEventListener('resize',relocateButtons);
+    document.addEventListener('DOMContentLoaded',relocateButtons);
     </script>
     
 </body>

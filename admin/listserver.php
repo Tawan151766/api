@@ -358,7 +358,7 @@
             </div>
 
             <div class="panel-body">
-                <table class="table server-custom-table">
+                <div class="table-responsive">
                     <thead>
                         <tr>
                             <th>STATUS <a href="#" data-toggle="modal" data-target="#PINDetail" data-toggle="tooltip" data-placement="top" title="ดูรายละเอียด"><i class="fa fa-circle"<?php echo $security_account;?>></i></a></th>
@@ -477,13 +477,14 @@
                         ?>
                     </tbody>
                 </table>
+                </div>
             </div>
         </div>
     </div>
 
     <!-- Modal Detail -->
     <div class="modal fade" id="Detail" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-        <div class="modal-dialog" role="document" style="height: 600px; width: 800px;">
+        <div class="modal-dialog" role="document" style="max-width:800px;width:100%;">
             <div class="<?php print panel_modify();?> panel">
                 <div class="<?php print $panel_heading;?> panel-heading">
                     <h3 class="box-title">รายละเอียด ADMIN LOGIN ด้วย PIN สามารถจัดการได้ในระบบ</h3>
@@ -576,7 +577,7 @@
 
     <!-- Modal PIN Detail -->
     <div class="modal fade" id="PINDetail" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-        <div class="modal-dialog" role="document" style="width: 1000px;">
+        <div class="modal-dialog" role="document" style="max-width:1000px;width:100%;">
             <div class="<?php print panel_modify();?> panel">
                 <div class="<?php print $panel_heading;?> panel-heading">
                     <h3 class="box-title">รายละเอียด SITE PIN</h3>

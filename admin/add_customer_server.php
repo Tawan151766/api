@@ -58,13 +58,13 @@ $sql=mysql_query("SELECT * FROM mt_config where admin_pin='".md5($cus_pin)."' or
 
             <div class="monitor-right">
                 <?php if($secom_v3==$_SESSION['security']){ ?>
-                    <button class="btn btn-info btn-square" disabled><i class="fa fa-plus"></i> เพิ่มผู้ดูแลระบบ</button>
+                    <button class="btn btn-info btn-square btn-block btn-flat" disabled><i class="fa fa-plus"></i> เพิ่มผู้ดูแลระบบ</button>
                 <?php }else{ ?>
-                    <button id="btnAdd" type="submit" form="loginForm" class="btn btn-info btn-square"><i class="fa fa-plus"></i> เพิ่มผู้ดูแลระบบ</button>
+                    <button id="btnAdd" type="submit" form="loginForm" class="btn btn-info btn-square btn-block btn-flat"><i class="fa fa-plus"></i> เพิ่มผู้ดูแลระบบ</button>
                 <?php } ?>
-                <button class="btn btn-danger btn-square" onclick="window.location='index.php?page=server'"><i class="fa fa-times"></i> ยกเลิก</button>
-                <button id="btnTest" class="btn btn-success btn-square" onclick="document.querySelector('.test-btn').click();"><i class="fa fa-cloud-download"></i> ทดสอบ</button>
-                <button id="btnReset" class="btn btn-warning btn-square" onclick="document.getElementById('loginForm').reset();"><i class="fa fa-refresh"></i> รีเซ็ต</button>
+                <button class="btn btn-danger btn-square btn-block btn-flat" onclick="window.location='index.php?page=server'"><i class="fa fa-times"></i> ยกเลิก</button>
+                <button id="btnTest" class="btn btn-success btn-square btn-block btn-flat" onclick="document.querySelector('.test-btn').click();"><i class="fa fa-cloud-download"></i> ทดสอบ</button>
+                <button id="btnReset" class="btn btn-warning btn-square btn-block btn-flat" onclick="document.getElementById('loginForm').reset();"><i class="fa fa-refresh"></i> รีเซ็ต</button>
             </div>
         </div>
         <div class="well">
@@ -173,7 +173,7 @@ $sql=mysql_query("SELECT * FROM mt_config where admin_pin='".md5($cus_pin)."' or
             <!-- Modal Detail-->
             <div class="modal fade" id="Detail" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
 
-                <div class="modal-dialog" role="document" style="height: 600px; width: 800px;">
+               <div class="modal-dialog" role="document" style="max-width:800px;width:100%;">
                     <div class="<?php print panel_modify();?>">
                         <div class="<?php print $panel_heading;?>">
                             <h3 class="box-title">รายละเอียด ADMIN LOGIN ด้วย PIN สามารถจัดการได้ในระบบ</h3>
@@ -273,7 +273,7 @@ $sql=mysql_query("SELECT * FROM mt_config where admin_pin='".md5($cus_pin)."' or
 <!-- Modal PINDetail-->
         <div class="modal fade" id="PINDetail" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
           
-			 <div class="modal-dialog" role="document" style="width: 1000px;">
+			 <div class="modal-dialog" role="document" style="max-width:1000px;width:100%;">
                  <div class="<?php print panel_modify();?>">
                         <div class="<?php print $panel_heading;?>">
                            <h3 class="box-title">รายละเอียด SITE PIN</h3>
