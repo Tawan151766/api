@@ -828,6 +828,62 @@ select[multiple].input-lg {
   top: 0;
   right: 15px;
 }
+/* Monitor layout */
+.monitor-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+}
 
+.monitor-left,
+.monitor-right {
+  flex: 1;
+}
+
+.monitor-right {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+.monitor-right .btn-block {
+  display: inline-block;
+  width: auto;
+}
+
+.monitor-right .btn {
+  margin-bottom: 10px;
+}
+/* Responsive helpers */
+@media (max-width: 767px) {
+  .content-wrapper {
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+
+  .table-responsive {
+    width: 100%;
+    margin-bottom: 15px;
+    overflow-x: auto;
+    -ms-overflow-style: -ms-autohiding-scrollbar;
+  }
+  .monitor-row {
+    flex-direction: column;
+  }
+
+  .monitor-right {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .monitor-right .btn-block {
+    display: block;
+    width: 100%;
+  }
+
+  .modal-dialog {
+    width: 100% !important;
+    margin: 10px;
+  }
+}
 
 
