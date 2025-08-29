@@ -1,0 +1,503 @@
+<!DOCTYPE html>
+<html lang="th">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Welcome - Login Success</title>
+
+    <!-- Favicons-->
+    <link rel="shortcut icon" href="assets/ico/favicon.ico" />
+
+    <!-- Google Fonts -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Font Awesome -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+    />
+
+    <!-- SweetAlert2 -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI",
+          Roboto, sans-serif;
+        background: #ffffff;
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 20px;
+      }
+
+      .container {
+        background: linear-gradient(135deg, #003c7e 0%, #0072bc 100%);
+        border-radius: 20px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+        width: 100%;
+        max-width: 900px;
+        min-height: 500px;
+        display: flex;
+        overflow: hidden;
+        position: relative;
+      }
+
+      /* Left Side - Image */
+      .left-side {
+        flex: 1;
+        background: linear-gradient(
+            135deg,
+            rgba(0, 0, 0, 0.3),
+            rgba(0, 0, 0, 0.1)
+          ),
+          url("assets/img/bg-tower.png") center/cover;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        justify-content: flex-start;
+        position: relative;
+        padding: 40px;
+        min-height: 500px;
+        border-radius: 20px;
+        margin-right: 10px;
+      }
+
+      .bw-logo {
+        position: absolute;
+        top: 40px;
+        left: 40px;
+        z-index: 10;
+      }
+
+      .bw-logo img {
+        height: 60px;
+        width: auto;
+      }
+
+      /* Right Side - Welcome Content */
+      .right-side {
+        flex: 1;
+        background: transparent;
+        padding: 60px 50px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        min-height: 500px;
+        color: white;
+      }
+
+      .header {
+        margin-bottom: 30px;
+        text-align: center;
+      }
+
+      .header h2 {
+        font-size: 36px;
+        font-weight: 300;
+        color: white;
+        margin-bottom: 8px;
+      }
+
+      .header p {
+        color: rgba(255, 255, 255, 0.8);
+        font-size: 16px;
+        font-weight: 300;
+      }
+
+      .welcome-content {
+        text-align: center;
+      }
+
+      .success-icon {
+        font-size: 80px;
+        color: #10b981;
+        margin-bottom: 30px;
+        animation: bounce 1s ease-out;
+      }
+
+      @keyframes bounce {
+        0%,
+        20%,
+        50%,
+        80%,
+        100% {
+          transform: translateY(0);
+        }
+        40% {
+          transform: translateY(-20px);
+        }
+        60% {
+          transform: translateY(-10px);
+        }
+      }
+
+      .user-info {
+        background: rgba(255, 255, 255, 0.1);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        color: white;
+        padding: 20px;
+        border-radius: 12px;
+        margin-bottom: 25px;
+        text-align: center;
+        backdrop-filter: blur(10px);
+      }
+
+      .user-info .user-title {
+        font-size: 18px;
+        font-weight: 600;
+        margin-bottom: 8px;
+        color: #10b981;
+      }
+
+      .user-info .user-text {
+        font-size: 14px;
+        line-height: 1.5;
+        color: rgba(255, 255, 255, 0.9);
+      }
+
+      .progress-bar {
+        width: 100%;
+        height: 6px;
+        background: rgba(255, 255, 255, 0.2);
+        border-radius: 3px;
+        overflow: hidden;
+        margin: 25px 0;
+      }
+
+      .progress-fill {
+        height: 100%;
+        background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+        border-radius: 3px;
+        animation: progress 5s ease-out;
+      }
+
+      @keyframes progress {
+        from {
+          width: 0%;
+        }
+        to {
+          width: 100%;
+        }
+      }
+
+      .redirect-info {
+        color: rgba(255, 255, 255, 0.7);
+        font-size: 14px;
+        margin-bottom: 20px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+      }
+
+      .continue-btn {
+        width: 100%;
+        padding: 15px;
+        background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+        border: none;
+        border-radius: 8px;
+        color: white;
+        font-size: 16px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        text-decoration: none;
+        display: inline-block;
+        text-align: center;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+      }
+
+      .continue-btn:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 8px 25px rgba(16, 185, 129, 0.4);
+        color: white;
+        text-decoration: none;
+      }
+
+      .footer-text {
+        text-align: center;
+        color: rgba(255, 255, 255, 0.6);
+        font-size: 12px;
+        margin-top: 30px;
+        line-height: 1.4;
+      }
+
+      /* Mobile Responsive */
+      @media (max-width: 768px) {
+        body {
+          padding: 10px;
+          min-height: 100vh;
+          align-items: flex-start;
+          padding-top: 20px;
+        }
+
+        .container {
+          flex-direction: column;
+          max-width: 100%;
+          min-height: auto;
+          border-radius: 15px;
+          box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .left-side {
+          min-height: 300px;
+          padding: 20px;
+          margin-right: 0;
+          margin-bottom: 0;
+          border-radius: 15px 15px 0 0;
+          display: flex;
+          align-items: flex-start;
+          justify-content: flex-start;
+        }
+
+        .bw-logo {
+          position: absolute;
+          top: 20px;
+          left: 20px;
+          text-align: left;
+        }
+
+        .bw-logo img {
+          height: 45px;
+          max-width: 200px;
+        }
+
+        .right-side {
+          padding: 30px 25px;
+          min-height: auto;
+          border-radius: 0 0 15px 15px;
+        }
+
+        .header {
+          margin-bottom: 25px;
+        }
+
+        .header h2 {
+          font-size: 24px;
+          margin-bottom: 5px;
+        }
+
+        .header p {
+          font-size: 14px;
+        }
+
+        .success-icon {
+          font-size: 60px;
+          margin-bottom: 20px;
+        }
+
+        .continue-btn {
+          padding: 12px;
+          font-size: 14px;
+          border-radius: 6px;
+        }
+
+        .footer-text {
+          margin-top: 20px;
+          font-size: 11px;
+        }
+      }
+
+      @media (max-width: 480px) {
+        body {
+          padding: 5px;
+          padding-top: 10px;
+        }
+
+        .container {
+          border-radius: 12px;
+        }
+
+        .left-side {
+          min-height: 250px;
+          padding: 15px;
+          border-radius: 12px 12px 0 0;
+          display: flex;
+          align-items: flex-start;
+          justify-content: flex-start;
+        }
+
+        .bw-logo {
+          position: absolute;
+          top: 15px;
+          left: 15px;
+          text-align: left;
+        }
+
+        .bw-logo img {
+          height: 40px;
+          max-width: 180px;
+        }
+
+        .right-side {
+          padding: 25px 20px;
+          border-radius: 0 0 12px 12px;
+        }
+
+        .header {
+          margin-bottom: 20px;
+        }
+
+        .header h2 {
+          font-size: 22px;
+        }
+
+        .header p {
+          font-size: 13px;
+        }
+
+        .success-icon {
+          font-size: 50px;
+          margin-bottom: 15px;
+        }
+
+        .continue-btn {
+          padding: 11px;
+          font-size: 13px;
+        }
+
+        .footer-text {
+          margin-top: 15px;
+          font-size: 10px;
+          line-height: 1.3;
+        }
+      }
+
+      /* Very small screens */
+      @media (max-width: 360px) {
+        .right-side {
+          padding: 20px 15px;
+        }
+
+        .header h2 {
+          font-size: 20px;
+        }
+
+        .success-icon {
+          font-size: 45px;
+        }
+
+        .continue-btn {
+          padding: 10px 12px;
+          font-size: 12px;
+        }
+      }
+    </style>
+</head>
+
+<body onLoad="setTimeout('startClock()',5000);">
+    <!--File inti Mikrotik Login-->
+    $(if chap-id)
+    <form name="sendin" action="$(link-login-only)" method="post">
+        <input type="hidden" name="username" />
+        <input type="hidden" name="password" />
+        <input type="hidden" name="dst" value="$(link-orig)" />
+        <input type="hidden" name="popup" value="true" />
+    </form>
+    <script type="text/javascript" src="md5.js"></script>
+    <script type="text/javascript">
+        function doLogin() {
+            document.sendin.username.value = document.login.username.value;
+            document.sendin.password.value = hexMD5('$(chap-id)' + document.login.password.value + '$(chap-challenge)');
+            document.sendin.submit();
+            return false;
+        }
+    </script>
+    $(endif)
+    <!--File inti Mikrotik Login-->
+
+    <div class="container">
+      <!-- Left Side - Image -->
+      <div class="left-side">
+        <div class="bw-logo">
+          <img src="assets/img/BWLOGO1.png" alt="Logo" />
+        </div>
+      </div>
+
+      <!-- Right Side - Welcome Content -->
+      <div class="right-side">
+        <div class="header">
+          <h2>Login Successful</h2>
+          <p>Welcome to the hotspot system</p>
+        </div>
+
+        <div class="welcome-content">
+          <div class="success-icon">
+            <i class="fas fa-check-circle"></i>
+          </div>
+
+          <!-- User Info -->
+          <div class="user-info">
+            <div class="user-title">
+              $(if login-by == 'trial')Trial User$(elif login-by !=
+              'mac')$(username)$(else)User$(endif)
+            </div>
+            <div class="user-text">
+              $(if login-by == 'trial')Welcome to free trial$(elif login-by !=
+              'mac')Welcome $(username)$(else)Welcome to the system$(endif)
+            </div>
+          </div>
+
+          <!-- Progress Bar -->
+          <div class="progress-bar">
+            <div class="progress-fill"></div>
+          </div>
+
+          <!-- Redirect Info -->
+          <div class="redirect-info">
+            <i class="fas fa-clock"></i>
+            <span>Redirecting in 5 seconds...</span>
+          </div>
+
+          <!-- Continue Button -->
+          <a href="link.html" class="continue-btn">
+            <i class="fas fa-arrow-right"></i> Continue
+          </a>
+        </div>
+
+        <!-- Footer -->
+        <div class="footer-text">
+          <p>
+            If you have any problems using the service, please contact
+            <i class="fa fa-phone-square"></i> : 022484800
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <script type="text/javascript" src="md5.js"></script>
+    <script language="JavaScript">
+        function startClock() {
+            $(if popup == 'true')
+            open('$(link-status)', 'hotspot_status', 'toolbar=0,location=0,directories=0,status=0,menubars=0,resizable=1,width=290,height=200');
+            $(endif)
+            location.href = 'link.html';
+        }
+
+        // Show success notification
+        Swal.fire({
+            icon: 'success',
+            title: 'เข้าสู่ระบบสำเร็จ!',
+            text: '$(if login-by == "trial")ยินดีต้อนรับสู่การทดลองใช้ฟรี$(elif login-by != "mac")ยินดีต้อนรับ $(username)$(else)ยินดีต้อนรับสู่ระบบ$(endif)',
+            confirmButtonColor: '#10b981',
+            timer: 3000,
+            timerProgressBar: true,
+            showConfirmButton: false
+        });
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,448 @@
+<html>
+  <head>
+    <title>mikrotik hotspot > advertisement</title>
+    <meta http-equiv="refresh" content="2; url=$(link-orig)" />
+    <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+    <meta http-equiv="pragma" content="no-cache" />
+    <meta http-equiv="expires" content="-1" />
+
+    <!-- Google Fonts -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Font Awesome -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+    />
+
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI",
+          Roboto, sans-serif;
+        background: #ffffff;
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 20px;
+      }
+
+      .advertisement-container {
+        background: linear-gradient(135deg, #003c7e 0%, #0072bc 100%);
+        border-radius: 20px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+        width: 100%;
+        max-width: 900px;
+        min-height: 500px;
+        display: flex;
+        overflow: hidden;
+        position: relative;
+      }
+
+      /* Left Side - Image */
+      .left-side {
+        flex: 1;
+        background: linear-gradient(
+            135deg,
+            rgba(0, 0, 0, 0.3),
+            rgba(0, 0, 0, 0.1)
+          ),
+          url("assets/img/bg-tower.png") center/cover;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        justify-content: flex-start;
+        position: relative;
+        padding: 40px;
+        min-height: 500px;
+        border-radius: 20px;
+        margin-right: 10px;
+      }
+
+      .bw-logo {
+        position: absolute;
+        top: 40px;
+        left: 40px;
+        z-index: 10;
+      }
+
+      .bw-logo img {
+        height: 60px;
+        width: auto;
+      }
+
+      /* Right Side - Advertisement Message */
+      .right-side {
+        flex: 1;
+        background: transparent;
+        padding: 60px 50px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        min-height: 500px;
+        color: white;
+        text-align: center;
+      }
+
+      .advertisement-content {
+        text-align: center;
+      }
+
+      .advertisement-icon {
+        font-size: 80px;
+        color: #fbbf24;
+        margin-bottom: 30px;
+        animation: bounce 2s infinite;
+      }
+
+      @keyframes bounce {
+        0%,
+        20%,
+        50%,
+        80%,
+        100% {
+          transform: translateY(0);
+        }
+        40% {
+          transform: translateY(-10px);
+        }
+        60% {
+          transform: translateY(-5px);
+        }
+      }
+
+      .advertisement-title {
+        font-size: 36px;
+        font-weight: 300;
+        color: white;
+        margin-bottom: 20px;
+      }
+
+      .advertisement-message {
+        background: rgba(251, 191, 36, 0.1);
+        border: 1px solid rgba(251, 191, 36, 0.3);
+        border-radius: 10px;
+        padding: 20px;
+        margin-bottom: 30px;
+        font-size: 16px;
+        color: #ffffff;
+        line-height: 1.6;
+      }
+
+      .countdown-section {
+        background: rgba(255, 255, 255, 0.1);
+        border-radius: 10px;
+        padding: 20px;
+        margin-bottom: 20px;
+        border: 1px solid rgba(255, 255, 255, 0.2);
+      }
+
+      .countdown-text {
+        color: rgba(255, 255, 255, 0.9);
+        font-size: 14px;
+        margin-bottom: 10px;
+      }
+
+      .countdown-timer {
+        font-size: 24px;
+        font-weight: 600;
+        color: #fbbf24;
+        margin-bottom: 15px;
+      }
+
+      .loading-bar {
+        width: 100%;
+        height: 4px;
+        background: rgba(255, 255, 255, 0.2);
+        border-radius: 2px;
+        overflow: hidden;
+      }
+
+      .loading-progress {
+        height: 100%;
+        background: linear-gradient(90deg, #fbbf24, #f59e0b);
+        border-radius: 2px;
+        animation: progress 2s linear;
+      }
+
+      @keyframes progress {
+        0% {
+          width: 0%;
+        }
+        100% {
+          width: 100%;
+        }
+      }
+
+      .manual-link-section {
+        background: rgba(255, 255, 255, 0.1);
+        border-radius: 10px;
+        padding: 15px;
+        border: 1px solid rgba(255, 255, 255, 0.2);
+      }
+
+      .manual-text {
+        color: rgba(255, 255, 255, 0.8);
+        font-size: 13px;
+        margin-bottom: 10px;
+      }
+
+      .manual-link {
+        color: #60a5fa;
+        text-decoration: none;
+        font-size: 14px;
+        font-weight: 500;
+        padding: 8px 16px;
+        background: rgba(96, 165, 250, 0.1);
+        border: 1px solid rgba(96, 165, 250, 0.3);
+        border-radius: 6px;
+        display: inline-block;
+        transition: all 0.3s ease;
+      }
+
+      .manual-link:hover {
+        background: rgba(96, 165, 250, 0.2);
+        transform: translateY(-2px);
+        text-decoration: none;
+        color: #93c5fd;
+      }
+
+      /* Mobile Responsive */
+      @media (max-width: 768px) {
+        body {
+          padding: 10px;
+          min-height: 100vh;
+          align-items: flex-start;
+          padding-top: 20px;
+        }
+
+        .advertisement-container {
+          flex-direction: column;
+          max-width: 100%;
+          min-height: auto;
+          border-radius: 15px;
+          box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .left-side {
+          min-height: 120px;
+          padding: 20px;
+          margin-right: 0;
+          margin-bottom: 0;
+          border-radius: 15px 15px 0 0;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+        }
+
+        .bw-logo {
+          position: relative;
+          top: auto;
+          left: auto;
+          text-align: center;
+        }
+
+        .bw-logo img {
+          height: 45px;
+          max-width: 200px;
+        }
+
+        .right-side {
+          padding: 30px 25px;
+          min-height: auto;
+          border-radius: 0 0 15px 15px;
+        }
+
+        .advertisement-icon {
+          font-size: 60px;
+          margin-bottom: 20px;
+        }
+
+        .advertisement-title {
+          font-size: 24px;
+          margin-bottom: 15px;
+        }
+
+        .advertisement-message {
+          padding: 15px;
+          font-size: 14px;
+          margin-bottom: 20px;
+        }
+
+        .countdown-section {
+          padding: 15px;
+          margin-bottom: 15px;
+        }
+
+        .countdown-timer {
+          font-size: 20px;
+        }
+
+        .manual-link-section {
+          padding: 12px;
+        }
+
+        .manual-link {
+          font-size: 13px;
+          padding: 6px 12px;
+        }
+      }
+
+      @media (max-width: 480px) {
+        body {
+          padding: 5px;
+          padding-top: 10px;
+        }
+
+        .advertisement-container {
+          border-radius: 12px;
+        }
+
+        .left-side {
+          min-height: 100px;
+          padding: 15px;
+          border-radius: 12px 12px 0 0;
+        }
+
+        .bw-logo img {
+          height: 40px;
+          max-width: 180px;
+        }
+
+        .right-side {
+          padding: 25px 20px;
+          border-radius: 0 0 12px 12px;
+        }
+
+        .advertisement-icon {
+          font-size: 50px;
+          margin-bottom: 15px;
+        }
+
+        .advertisement-title {
+          font-size: 22px;
+          margin-bottom: 12px;
+        }
+
+        .advertisement-message {
+          padding: 12px;
+          font-size: 13px;
+          margin-bottom: 18px;
+        }
+
+        .countdown-section {
+          padding: 12px;
+          margin-bottom: 12px;
+        }
+
+        .countdown-timer {
+          font-size: 18px;
+        }
+
+        .manual-link-section {
+          padding: 10px;
+        }
+
+        .manual-link {
+          font-size: 12px;
+          padding: 5px 10px;
+        }
+      }
+
+      /* Very small screens */
+      @media (max-width: 360px) {
+        .right-side {
+          padding: 20px 15px;
+        }
+
+        .advertisement-title {
+          font-size: 20px;
+        }
+
+        .advertisement-message {
+          font-size: 12px;
+        }
+
+        .countdown-timer {
+          font-size: 16px;
+        }
+      }
+    </style>
+
+    <!-- Original JavaScript Logic -->
+    <script language="JavaScript">
+      <!--
+      var popup = "";
+      function openOrig() {
+        if (window.focus) popup.focus();
+        location.href = "$(link-orig)";
+      }
+      function openAd() {
+        location.href = "$(link-redirect)";
+      }
+      function openAdvert() {
+        if (window.name != "hotspot_advert") {
+          popup = open("$(link-redirect)", "hotspot_advert", "");
+          setTimeout("openOrig()", 1000);
+          return;
+        }
+        setTimeout("openAd()", 1000);
+      }
+      //-->
+    </script>
+  </head>
+
+  <body onLoad="openAdvert()">
+    <div class="advertisement-container">
+      <!-- Left Side - Image -->
+      <div class="left-side">
+        <div class="bw-logo">
+          <img src="assets/img/BWLOGO1.png" alt="Logo" />
+        </div>
+      </div>
+
+      <!-- Right Side - Advertisement Message -->
+      <div class="right-side">
+        <div class="advertisement-content">
+          <div class="advertisement-icon">
+            <i class="fas fa-bullhorn"></i>
+          </div>
+
+          <h1 class="advertisement-title">Advertisement</h1>
+
+          <div class="advertisement-message">
+            <div>Please wait while we show you our advertisement...</div>
+          </div>
+
+          <div class="countdown-section">
+            <div class="countdown-text">Redirecting automatically in:</div>
+            <div class="countdown-timer">2 seconds</div>
+            <div class="loading-bar">
+              <div class="loading-progress"></div>
+            </div>
+          </div>
+
+          <div class="manual-link-section">
+            <div class="manual-text">If nothing happens, open</div>
+            <a
+              href="$(link-redirect)"
+              target="hotspot_advert"
+              class="manual-link"
+              >advertisement</a
+            >
+            <div class="manual-text">manually.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,577 @@
+<!DOCTYPE html>
+<html lang="th">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>LOGIN</title>
+
+    <!-- Favicons-->
+    <link rel="shortcut icon" href="assets/ico/favicon.ico" />
+
+    <!-- Google Fonts -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Font Awesome -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+    />
+
+    <!-- SweetAlert -->
+    <script src="dist/sweetalert-dev.js"></script>
+    <link rel="stylesheet" href="dist/sweetalert.css" />
+
+    <!-- MD5 Library -->
+    <script type="text/javascript" src="md5.js"></script>
+
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI",
+          Roboto, sans-serif;
+        background: #ffffff;
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 20px;
+      }
+
+      .container {
+        background: linear-gradient(135deg, #003c7e 0%, #0072bc 100%);
+        border-radius: 20px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+        width: 100%;
+        max-width: 900px;
+        min-height: 500px;
+        display: flex;
+        overflow: hidden;
+        position: relative;
+      }
+
+      /* Left Side - Image */
+      .left-side {
+        flex: 1;
+        background: linear-gradient(
+            135deg,
+            rgba(0, 0, 0, 0.3),
+            rgba(0, 0, 0, 0.1)
+          ),
+          url("assets/img/bg-tower.png") center/cover;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        justify-content: flex-start;
+        position: relative;
+        padding: 40px;
+        min-height: 500px;
+        border-radius: 20px;
+        margin-right: 10px;
+      }
+
+      .bw-logo {
+        position: absolute;
+        top: 40px;
+        left: 40px;
+        z-index: 10;
+      }
+
+      .bw-logo img {
+        height: 60px;
+        width: auto;
+      }
+
+      /* Right Side - Form */
+      .right-side {
+        flex: 1;
+        background: transparent;
+        padding: 60px 50px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        min-height: 500px;
+        color: white;
+      }
+
+      .form-header {
+        margin-bottom: 40px;
+        text-align: left;
+      }
+
+      .form-header h2 {
+        font-size: 36px;
+        font-weight: 300;
+        color: white;
+        margin-bottom: 8px;
+      }
+
+      .form-header p {
+        color: rgba(255, 255, 255, 0.8);
+        font-size: 16px;
+        font-weight: 300;
+      }
+
+      .form-group {
+        margin-bottom: 20px;
+        position: relative;
+      }
+
+      .form-group label {
+        display: block;
+        font-size: 14px;
+        font-weight: 400;
+        color: rgba(255, 255, 255, 0.9);
+        margin-bottom: 8px;
+      }
+
+      .input-wrapper {
+        position: relative;
+      }
+
+      .form-control {
+        width: 100%;
+        padding: 15px 20px 15px 45px;
+        border: none;
+        border-radius: 8px;
+        font-size: 16px;
+        font-weight: 400;
+        color: #333;
+        background: #ffffff;
+        transition: all 0.3s ease;
+        outline: none;
+      }
+
+      .form-control:focus {
+        box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.3);
+      }
+
+      .form-control::placeholder {
+        color: #999;
+        font-weight: 400;
+      }
+
+      .input-icon {
+        position: absolute;
+        left: 15px;
+        top: 50%;
+        transform: translateY(-50%);
+        color: #666;
+        font-size: 16px;
+      }
+
+      .sign-in-btn {
+        width: 100%;
+        padding: 15px;
+        background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+        border: none;
+        border-radius: 8px;
+        color: white;
+        font-size: 16px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        margin-bottom: 15px;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+      }
+
+      .sign-in-btn:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 8px 25px rgba(16, 185, 129, 0.4);
+      }
+
+      .trial-btn {
+        width: 100%;
+        padding: 15px;
+        background: linear-gradient(135deg, #118211 0%, #3daa3d 100%);
+        border: none;
+        border-radius: 8px;
+        color: white;
+        font-size: 16px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        text-decoration: none;
+        display: inline-block;
+        text-align: center;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        margin-bottom: 10px;
+      }
+
+      .trial-btn:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 8px 25px rgba(17, 130, 17, 0.4);
+        color: white;
+        text-decoration: none;
+      }
+
+      .website-btn {
+        width: 100%;
+        padding: 15px;
+        background: linear-gradient(135deg, #b86822 0%, #ffa353 100%);
+        border: none;
+        border-radius: 8px;
+        color: white;
+        font-size: 16px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        text-decoration: none;
+        display: inline-block;
+        text-align: center;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+      }
+
+      .website-btn:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 8px 25px rgba(184, 104, 34, 0.4);
+        color: white;
+        text-decoration: none;
+      }
+
+      .footer-text {
+        text-align: center;
+        color: rgba(255, 255, 255, 0.6);
+        font-size: 12px;
+        margin-top: 30px;
+        line-height: 1.4;
+      }
+
+      .header {
+        margin-bottom: 30px;
+        text-align: center;
+      }
+
+      .header h2 {
+        font-size: 36px;
+        font-weight: 300;
+        color: white;
+        margin-bottom: 8px;
+      }
+
+      .header p {
+        color: rgba(255, 255, 255, 0.8);
+        font-size: 16px;
+        font-weight: 300;
+      }
+
+      .social-login p {
+        text-align: center;
+        color: rgba(255, 255, 255, 0.6);
+        margin: 20px 0 10px 0;
+        font-size: 14px;
+      }
+
+      /* Mobile Responsive */
+      @media (max-width: 768px) {
+        body {
+          padding: 10px;
+          min-height: 100vh;
+          align-items: flex-start;
+          padding-top: 20px;
+        }
+
+        .container {
+          flex-direction: column;
+          max-width: 100%;
+          min-height: auto;
+          border-radius: 15px;
+          box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .left-side {
+          min-height: 300px;
+          padding: 20px;
+          margin-right: 0;
+          margin-bottom: 0;
+          border-radius: 15px 15px 0 0;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+        }
+
+        .bw-logo {
+          position: relative;
+          top: auto;
+          left: auto;
+          text-align: center;
+        }
+
+        .bw-logo img {
+          height: 45px;
+          max-width: 200px;
+        }
+
+        .right-side {
+          padding: 30px 25px;
+          min-height: auto;
+          border-radius: 0 0 15px 15px;
+        }
+
+        .header {
+          margin-bottom: 25px;
+        }
+
+        .header h2 {
+          font-size: 24px;
+          margin-bottom: 5px;
+        }
+
+        .header p {
+          font-size: 14px;
+        }
+
+        .form-control {
+          padding: 12px 15px 12px 40px;
+          font-size: 15px;
+        }
+
+        .sign-in-btn,
+        .trial-btn,
+        .website-btn {
+          padding: 12px;
+          font-size: 14px;
+          border-radius: 6px;
+        }
+
+        .footer-text {
+          margin-top: 20px;
+          font-size: 11px;
+        }
+      }
+
+      @media (max-width: 480px) {
+        body {
+          padding: 5px;
+          padding-top: 10px;
+        }
+
+        .container {
+          border-radius: 12px;
+        }
+
+        .left-side {
+          min-height: 250px;
+          padding: 15px;
+          border-radius: 12px 12px 0 0;
+        }
+
+        .bw-logo img {
+          height: 40px;
+          max-width: 180px;
+        }
+
+        .right-side {
+          padding: 25px 20px;
+          border-radius: 0 0 12px 12px;
+        }
+
+        .header {
+          margin-bottom: 20px;
+        }
+
+        .header h2 {
+          font-size: 22px;
+        }
+
+        .form-control {
+          padding: 11px 15px 11px 40px;
+          font-size: 14px;
+        }
+
+        .sign-in-btn,
+        .trial-btn,
+        .website-btn {
+          padding: 11px;
+          font-size: 13px;
+        }
+
+        .footer-text {
+          margin-top: 15px;
+          font-size: 10px;
+          line-height: 1.3;
+        }
+      }
+
+      /* Very small screens */
+      @media (max-width: 360px) {
+        .right-side {
+          padding: 20px 15px;
+        }
+
+        .header h2 {
+          font-size: 20px;
+        }
+
+        .form-control {
+          padding: 10px 15px 10px 35px;
+          font-size: 13px;
+        }
+
+        .sign-in-btn,
+        .trial-btn,
+        .website-btn {
+          padding: 10px;
+          font-size: 12px;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <!-- CHAP Authentication Forms (Original Logic) -->
+    $(if chap-id)
+    <form
+      name="sendin"
+      action="$(link-login-only)"
+      method="post"
+      style="display: none"
+    >
+      <input type="hidden" name="username" />
+      <input type="hidden" name="password" />
+      <input type="hidden" name="dst" value="$(link-orig)" />
+      <input type="hidden" name="popup" value="true" />
+    </form>
+    <script type="text/javascript">
+      <!--
+      function doLogin() {
+        document.sendin.username.value = document.login.username.value;
+        document.sendin.password.value = hexMD5(
+          "$(chap-id)" + document.login.password.value + "$(chap-challenge)"
+        );
+        document.sendin.submit();
+        return false;
+      }
+      //-->
+    </script>
+    $(endif)
+
+    <!-- Error Handling (Original Logic) -->
+    $(if error)
+    <script>
+      sweetAlert(
+        {
+          title: "Sorry!",
+          text: "$(error)",
+          type: "error",
+          confirmButtonColor: "#ef3f23",
+          confirmButtonText: "OK",
+          showCancelButton: false,
+          closeOnConfirm: false,
+          showLoaderOnConfirm: true,
+        },
+        function () {
+          setTimeout(function () {
+            window.location.href = "login.html";
+          }, 1000);
+        }
+      );
+    </script>
+    $(endif)
+
+    <div class="container">
+      <!-- Left Side - Image -->
+      <div class="left-side">
+        <div class="bw-logo">
+          <img src="assets/img/BWLOGO1.png" alt="Logo" />
+        </div>
+      </div>
+
+      <!-- Right Side - Form -->
+      <div class="right-side">
+        <div class="header">
+          <h2>Login</h2>
+          <p>Please log in to use</p>
+        </div>
+
+        <!-- Login Form (Original Logic with Modern UI) -->
+        <form
+          class="login-form"
+          name="login"
+          action="$(link-login-only)"
+          method="post"
+          $(if
+          chap-id)
+          onSubmit="return doLogin()"
+          $(endif)
+        >
+          <input type="hidden" name="dst" value="$(link-orig)" />
+          <input type="hidden" name="popup" value="true" />
+
+          <!-- Username Field -->
+          <div class="form-group">
+            <label for="username">Username</label>
+            <div class="input-wrapper">
+              <input
+                type="text"
+                name="username"
+                class="form-control"
+                placeholder="Username..."
+                value="$(username)"
+                required
+              />
+              <i class="fas fa-user input-icon" style="color: #003c7e"></i>
+            </div>
+          </div>
+
+          <!-- Password Field -->
+          <div class="form-group">
+            <label for="password">Password</label>
+            <div class="input-wrapper">
+              <input
+                type="password"
+                name="password"
+                class="form-control"
+                placeholder="Password..."
+                required
+              />
+              <i class="fas fa-lock input-icon" style="color: #003c7e"></i>
+            </div>
+          </div>
+
+          <!-- Sign In Button -->
+          <button type="submit" class="sign-in-btn">
+            <i class="fa fa-home"></i> SignIn
+          </button>
+        </form>
+
+        <!-- Social Login Section (Original Logic) -->
+        <div class="social-login">
+          <p>.........................</p>
+
+          $(if trial == 'yes')
+          <a
+            href="$(link-login-only)?dst=$(link-orig-esc)&username=T-$(mac-esc)"
+            class="trial-btn"
+          >
+            <i class="fa fa-history"></i> Free Trial
+          </a>
+          $(endif)
+
+          <a href="http://www.baanamphawa.com/" class="website-btn">
+            <i class="fa fa-rss-square"></i> Web Site
+          </a>
+        </div>
+
+        <!-- Footer -->
+        <div class="footer-text">
+          <p>
+            Have problems in using, please contact
+            <i class="fa fa-phone-square"></i> : 022484800
+          </p>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>LOGOUT</title>
+
+    <!-- Favicons-->
+    <link rel="shortcut icon" href="assets/ico/favicon.ico" />
+
+    <!-- Google Fonts -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Font Awesome -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+    />
+
+    <!-- SweetAlert -->
+    <script src="dist/sweetalert-dev.js"></script>
+    <link rel="stylesheet" href="dist/sweetalert.css" />
+
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI",
+          Roboto, sans-serif;
+        background: #ffffff;
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 20px;
+      }
+
+      .container {
+        background: linear-gradient(135deg, #003c7e 0%, #0072bc 100%);
+        border-radius: 20px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+        width: 100%;
+        max-width: 900px;
+        min-height: 500px;
+        display: flex;
+        overflow: hidden;
+        position: relative;
+      }
+
+      /* Left Side - Image */
+      .left-side {
+        flex: 1;
+        background: linear-gradient(
+            135deg,
+            rgba(0, 0, 0, 0.3),
+            rgba(0, 0, 0, 0.1)
+          ),
+          url("assets/img/bg-tower.png") center/cover;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        justify-content: flex-start;
+        position: relative;
+        padding: 40px;
+        min-height: 500px;
+        border-radius: 20px;
+        margin-right: 10px;
+      }
+
+      .bw-logo {
+        position: absolute;
+        top: 40px;
+        left: 40px;
+        z-index: 10;
+      }
+
+      .bw-logo img {
+        height: 60px;
+        width: auto;
+      }
+
+      /* Right Side - Logout Message */
+      .right-side {
+        flex: 1;
+        background: transparent;
+        padding: 60px 50px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        min-height: 500px;
+        color: white;
+        text-align: center;
+      }
+
+      .header {
+        margin-bottom: 30px;
+        text-align: center;
+      }
+
+      .header h2 {
+        font-size: 36px;
+        font-weight: 300;
+        color: white;
+        margin-bottom: 8px;
+      }
+
+      .header p {
+        color: rgba(255, 255, 255, 0.8);
+        font-size: 16px;
+        font-weight: 300;
+      }
+
+      .logout-content {
+        text-align: center;
+      }
+
+      .logout-icon {
+        font-size: 80px;
+        color: #10b981;
+        margin-bottom: 30px;
+        animation: pulse 2s infinite;
+      }
+
+      @keyframes pulse {
+        0% {
+          transform: scale(1);
+        }
+        50% {
+          transform: scale(1.1);
+        }
+        100% {
+          transform: scale(1);
+        }
+      }
+
+      .logout-message {
+        background: rgba(255, 255, 255, 0.1);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        color: white;
+        padding: 20px;
+        border-radius: 12px;
+        margin-bottom: 25px;
+        text-align: center;
+        backdrop-filter: blur(10px);
+        font-size: 16px;
+        line-height: 1.5;
+      }
+
+      .redirecting-text {
+        font-size: 14px;
+        color: rgba(255, 255, 255, 0.7);
+        margin-top: 20px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+      }
+
+      .spinner {
+        display: inline-block;
+        width: 16px;
+        height: 16px;
+        border: 2px solid rgba(255, 255, 255, 0.3);
+        border-radius: 50%;
+        border-top-color: #ffffff;
+        animation: spin 1s ease-in-out infinite;
+      }
+
+      @keyframes spin {
+        to {
+          transform: rotate(360deg);
+        }
+      }
+
+      .footer-text {
+        text-align: center;
+        color: rgba(255, 255, 255, 0.6);
+        font-size: 12px;
+        margin-top: 30px;
+        line-height: 1.4;
+      }
+
+      /* Mobile Responsive */
+      @media (max-width: 768px) {
+        body {
+          padding: 10px;
+          min-height: 100vh;
+          align-items: flex-start;
+          padding-top: 20px;
+        }
+
+        .container {
+          flex-direction: column;
+          max-width: 100%;
+          min-height: auto;
+          border-radius: 15px;
+          box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .left-side {
+          min-height: 300px;
+          padding: 20px;
+          margin-right: 0;
+          margin-bottom: 0;
+          border-radius: 15px 15px 0 0;
+          display: flex;
+          align-items: flex-start;
+          justify-content: flex-start;
+        }
+
+        .bw-logo {
+          position: absolute;
+          top: 20px;
+          left: 20px;
+          text-align: left;
+        }
+
+        .bw-logo img {
+          height: 45px;
+          max-width: 200px;
+        }
+
+        .right-side {
+          padding: 30px 25px;
+          min-height: auto;
+          border-radius: 0 0 15px 15px;
+        }
+
+        .logout-icon {
+          font-size: 60px;
+          margin-bottom: 20px;
+        }
+
+        .logout-title {
+          font-size: 24px;
+          margin-bottom: 15px;
+        }
+
+        .logout-message {
+          font-size: 16px;
+          margin-bottom: 20px;
+        }
+
+        .redirecting-text {
+          font-size: 12px;
+          margin-top: 15px;
+        }
+      }
+
+      @media (max-width: 480px) {
+        body {
+          padding: 5px;
+          padding-top: 10px;
+        }
+
+        .container {
+          border-radius: 12px;
+        }
+
+        .left-side {
+          min-height: 250px;
+          padding: 15px;
+          border-radius: 12px 12px 0 0;
+          display: flex;
+          align-items: flex-start;
+          justify-content: flex-start;
+        }
+
+        .bw-logo {
+          position: absolute;
+          top: 15px;
+          left: 15px;
+          text-align: left;
+        }
+
+        .bw-logo img {
+          height: 40px;
+          max-width: 180px;
+        }
+
+        .right-side {
+          padding: 25px 20px;
+          border-radius: 0 0 12px 12px;
+        }
+
+        .logout-icon {
+          font-size: 50px;
+          margin-bottom: 15px;
+        }
+
+        .logout-title {
+          font-size: 22px;
+          margin-bottom: 12px;
+        }
+
+        .logout-message {
+          font-size: 15px;
+          margin-bottom: 18px;
+        }
+
+        .redirecting-text {
+          font-size: 11px;
+          margin-top: 12px;
+        }
+      }
+
+      /* Very small screens */
+      @media (max-width: 360px) {
+        .right-side {
+          padding: 20px 15px;
+        }
+
+        .logout-title {
+          font-size: 20px;
+        }
+
+        .logout-message {
+          font-size: 14px;
+        }
+      }
+    </style>
+  </head>
+
+  <body onLoad="setTimeout('startClock()',5000);">
+    <!-- Original JavaScript Logic -->
+    <script language="JavaScript">
+      <!--
+      function openLogin() {
+        if (window.name != "hotspot_logout") return true;
+        open("$(link-login)", "_blank", "");
+        window.close();
+        return false;
+      }
+      //-->
+    </script>
+
+    <div class="container">
+      <!-- Left Side - Image -->
+      <div class="left-side">
+        <div class="bw-logo">
+          <img src="assets/img/BWLOGO1.png" alt="Logo" />
+        </div>
+      </div>
+
+      <!-- Right Side - Logout Message -->
+      <div class="right-side">
+        <div class="header">
+          <h2>Logout Successfully</h2>
+          <p>Thank you for using our service</p>
+        </div>
+
+        <div class="logout-content">
+          <div class="logout-icon">
+            <i class="fas fa-check-circle"></i>
+          </div>
+
+          <!-- Logout Message -->
+          <div class="logout-message">
+            $(if login-by == 'trial')
+            <strong>Thank you Trial User</strong>
+            $(elif login-by != 'mac')
+            <strong>Thank you $(username)</strong>
+            $(endif)
+            <br />
+            You have been successfully logged out from the system
+          </div>
+
+          <div class="redirecting-text">
+            <span>Redirecting to login page</span>
+            <span class="spinner"></span>
+          </div>
+        </div>
+
+        <!-- Footer -->
+        <div class="footer-text">
+          <p>
+            If you have any problems using the service, please contact
+            <i class="fa fa-phone-square"></i> : 022484800
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Original SweetAlert Popup Logic -->
+    <script>
+      sweetAlert(
+        {
+          title: "Logout Successfully",
+          text: "	$(if login-by == 'trial') <strong style=font-size:15pt>Thank you Trial User</strong> $(elif login-by != 'mac')<strong style=font-size:15pt> Thank you $(username)</strong> $(endif)",
+          confirmButtonText: "OK",
+          confirmButtonColor: "#ef3f23",
+          html: true,
+          allowOutsideClick: true,
+          type: "success",
+          showCancelButton: false,
+          closeOnConfirm: false,
+          showLoaderOnConfirm: true,
+        },
+        function () {
+          setTimeout(function () {
+            window.location.href = "$(link-login)";
+          }, 1000);
+        }
+      );
+    </script>
+
+    <!-- Original Scripts -->
+    <script type="text/javascript" src="js/jquery.min.js"></script>
+    <script type="text/javascript" src="js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="/md5.js"></script>
+  </body>
+</html>
