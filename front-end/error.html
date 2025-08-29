@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Hotspot Error</title>
+
+    <!-- Favicons-->
+    <link rel="shortcut icon" href="assets/ico/favicon.ico" />
+
+    <!-- Google Fonts -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Font Awesome -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+    />
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            background: #ffffff;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .container {
+            background: linear-gradient(135deg, #003c7e 0%, #0072bc 100%);
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+            width: 100%;
+            max-width: 900px;
+            min-height: 500px;
+            display: flex;
+            overflow: hidden;
+            position: relative;
+        }
+
+        /* Left Side - Image */
+        .left-side {
+            flex: 1;
+            background: linear-gradient(135deg, rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.1)), url("assets/img/bg-tower.png") center/cover;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            justify-content: flex-start;
+            position: relative;
+            padding: 40px;
+            min-height: 500px;
+            border-radius: 20px;
+            margin-right: 10px;
+        }
+
+        .bw-logo {
+            position: absolute;
+            top: 40px;
+            left: 40px;
+            z-index: 10;
+        }
+
+        .bw-logo img {
+            height: 60px;
+            width: auto;
+        }
+
+        /* Right Side - Error Content */
+        .right-side {
+            flex: 1;
+            background: transparent;
+            padding: 60px 50px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            min-height: 500px;
+            color: white;
+        }
+
+        .header {
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        .header h2 {
+            font-size: 36px;
+            font-weight: 300;
+            color: white;
+            margin-bottom: 8px;
+        }
+
+        .header p {
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 16px;
+            font-weight: 300;
+        }
+
+        .error-display {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .error-icon {
+            font-size: 72px;
+            color: #ef4444;
+            margin-bottom: 20px;
+            animation: shake 0.5s ease-in-out infinite alternate;
+        }
+
+        @keyframes shake {
+            0% {
+                transform: translateX(0);
+            }
+            100% {
+                transform: translateX(5px);
+            }
+        }
+
+        .error-message {
+            background: rgba(239, 68, 68, 0.1);
+            border: 1px solid rgba(239, 68, 68, 0.3);
+            color: white;
+            padding: 20px;
+            border-radius: 12px;
+            margin-bottom: 25px;
+            text-align: center;
+            backdrop-filter: blur(10px);
+        }
+
+        .error-message .error-title {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            color: #fecaca;
+        }
+
+        .error-message .error-text {
+            font-size: 14px;
+            line-height: 1.5;
+            color: rgba(255, 255, 255, 0.9);
+            font-weight: 500;
+        }
+
+        .login-btn {
+            width: 100%;
+            padding: 15px;
+            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+            border: none;
+            border-radius: 8px;
+            color: white;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+            text-align: center;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 15px;
+        }
+
+        .login-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(16, 185, 129, 0.4);
+            color: white;
+            text-decoration: none;
+        }
+
+        .footer-text {
+            text-align: center;
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 12px;
+            margin-top: 30px;
+            line-height: 1.4;
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            body {
+                padding: 10px;
+                min-height: 100vh;
+                align-items: flex-start;
+                padding-top: 20px;
+            }
+
+            .container {
+                flex-direction: column;
+                max-width: 100%;
+                min-height: auto;
+                border-radius: 15px;
+                box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+            }
+
+            .left-side {
+                min-height: 300px;
+                padding: 20px;
+                margin-right: 0;
+                margin-bottom: 0;
+                border-radius: 15px 15px 0 0;
+                display: flex;
+                align-items: flex-start;
+                justify-content: flex-start;
+            }
+
+            .bw-logo {
+                position: absolute;
+                top: 20px;
+                left: 20px;
+                text-align: left;
+            }
+
+            .bw-logo img {
+                height: 45px;
+                max-width: 200px;
+            }
+
+            .right-side {
+                padding: 30px 25px;
+                min-height: auto;
+                border-radius: 0 0 15px 15px;
+            }
+
+            .error-icon {
+                font-size: 60px;
+                margin-bottom: 20px;
+            }
+
+            .error-title {
+                font-size: 24px;
+                margin-bottom: 15px;
+            }
+
+            .error-message {
+                padding: 15px;
+                margin-bottom: 20px;
+            }
+
+            .login-btn {
+                padding: 12px;
+                font-size: 14px;
+                border-radius: 6px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            body {
+                padding: 5px;
+                padding-top: 10px;
+            }
+
+            .container {
+                border-radius: 12px;
+            }
+
+            .left-side {
+                min-height: 250px;
+                padding: 15px;
+                border-radius: 12px 12px 0 0;
+                display: flex;
+                align-items: flex-start;
+                justify-content: flex-start;
+            }
+
+            .bw-logo {
+                position: absolute;
+                top: 15px;
+                left: 15px;
+                text-align: left;
+            }
+
+            .bw-logo img {
+                height: 40px;
+                max-width: 180px;
+            }
+
+            .right-side {
+                padding: 25px 20px;
+                border-radius: 0 0 12px 12px;
+            }
+
+            .error-icon {
+                font-size: 50px;
+                margin-bottom: 15px;
+            }
+
+            .error-title {
+                font-size: 22px;
+                margin-bottom: 12px;
+            }
+
+            .error-message {
+                padding: 12px;
+                margin-bottom: 18px;
+            }
+
+            .login-btn {
+                padding: 11px;
+                font-size: 13px;
+            }
+        }
+
+        /* Very small screens */
+        @media (max-width: 360px) {
+            .right-side {
+                padding: 20px 15px;
+            }
+
+            .error-title {
+                font-size: 20px;
+            }
+
+            .login-btn {
+                padding: 10px 12px;
+                font-size: 12px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+      <!-- Left Side - Image -->
+      <div class="left-side">
+        <div class="bw-logo">
+          <img src="assets/img/BWLOGO1.png" alt="Logo" />
+        </div>
+      </div>
+
+      <!-- Right Side - Error Content -->
+      <div class="right-side">
+        <div class="header">
+          <h2>Hotspot Error</h2>
+          <p>An error occurred while processing your request</p>
+        </div>
+
+        <!-- Error Display -->
+        <div class="error-display">
+          <div class="error-icon">
+            <i class="fas fa-exclamation-triangle"></i>
+          </div>
+        </div>
+
+        <!-- Error Message -->
+        <div class="error-message">
+          <div class="error-title">
+            <i class="fas fa-times-circle"></i>
+            Connection Error
+          </div>
+          <div class="error-text">$(error)</div>
+        </div>
+
+        <!-- Login Button -->
+        <a href="$(link-login)" class="login-btn">
+          <i class="fas fa-sign-in-alt"></i> Go to Login Page
+        </a>
+
+        <!-- Footer -->
+        <div class="footer-text">
+          <p>
+            If you have any problems using the service, please contact
+            <i class="fa fa-phone-square"></i> : 022484800
+          </p>
+        </div>
+      </div>
+    </div>
+</body>
+</html>
