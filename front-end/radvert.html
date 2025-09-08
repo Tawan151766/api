@@ -33,16 +33,16 @@
         display: flex;
         align-items: center;
         justify-content: center;
-        padding: 20px;
+        margin: 0;
+        padding: 0;
       }
 
       .advertisement-container {
         background: linear-gradient(135deg, #003c7e 0%, #0072bc 100%);
-        border-radius: 20px;
         box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
         width: 100%;
-        max-width: 900px;
-        min-height: 500px;
+        height: 100vh;
+        max-width: 100vw;
         display: flex;
         overflow: hidden;
         position: relative;
@@ -63,16 +63,22 @@
         justify-content: flex-start;
         position: relative;
         padding: 40px;
-        min-height: 500px;
-        border-radius: 20px;
+        height: 100vh;
+        border-top-right-radius: 20px;
+        border-bottom-right-radius: 20px;
+        border-bottom-left-radius: 0%;
+        border-top-left-radius: 0%;
         margin-right: 10px;
       }
 
       .bw-logo {
         position: absolute;
-        top: 40px;
-        left: 40px;
+        top: 0;
+        left: 0;
         z-index: 10;
+        background: white;
+        padding: 15px;
+        border-radius: 0 0 15px 0;
       }
 
       .bw-logo img {
@@ -88,7 +94,7 @@
         display: flex;
         flex-direction: column;
         justify-content: center;
-        min-height: 500px;
+        height: 100vh;
         color: white;
         text-align: center;
       }
@@ -219,36 +225,38 @@
       /* Mobile Responsive */
       @media (max-width: 768px) {
         body {
-          padding: 10px;
           min-height: 100vh;
-          align-items: flex-start;
-          padding-top: 20px;
-        }
-
-        .advertisement-container {
-          flex-direction: column;
-          max-width: 100%;
-          min-height: auto;
-          border-radius: 15px;
-          box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
-        }
-
-        .left-side {
-          min-height: 120px;
-          padding: 20px;
-          margin-right: 0;
-          margin-bottom: 0;
-          border-radius: 15px 15px 0 0;
-          display: flex;
           align-items: center;
           justify-content: center;
         }
 
+        .advertisement-container {
+          flex-direction: column;
+          width: 100%;
+          height: 100vh;
+          max-width: 100vw;
+          box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+        }
+
+        .left-side {
+          flex: 1;
+          padding: 20px;
+          margin-right: 0;
+          margin-bottom: 0;
+          display: flex;
+          align-items: flex-start;
+          justify-content: flex-start;
+          border-bottom-left-radius: 20px;
+          border-bottom-right-radius: 20px;
+          border-top-right-radius: 0;
+          border-top-left-radius: 0;
+        }
+
         .bw-logo {
-          position: relative;
-          top: auto;
-          left: auto;
-          text-align: center;
+          position: absolute;
+          top: 0;
+          left: 0;
+          text-align: left;
         }
 
         .bw-logo img {
@@ -257,9 +265,9 @@
         }
 
         .right-side {
+          flex: 1;
           padding: 30px 25px;
           min-height: auto;
-          border-radius: 0 0 15px 15px;
         }
 
         .advertisement-icon {
@@ -299,18 +307,34 @@
 
       @media (max-width: 480px) {
         body {
-          padding: 5px;
-          padding-top: 10px;
+          min-height: 100vh;
+          align-items: center;
+          justify-content: center;
         }
 
         .advertisement-container {
-          border-radius: 12px;
+          width: 100%;
+          height: 100vh;
+          max-width: 100vw;
         }
 
         .left-side {
-          min-height: 100px;
+          flex: 1;
           padding: 15px;
-          border-radius: 12px 12px 0 0;
+          display: flex;
+          align-items: flex-start;
+          justify-content: flex-start;
+          border-bottom-left-radius: 20px;
+          border-bottom-right-radius: 20px;
+          border-top-right-radius: 0;
+          border-top-left-radius: 0;
+        }
+
+        .bw-logo {
+          position: absolute;
+          top: 0;
+          left: 0;
+          text-align: left;
         }
 
         .bw-logo img {
@@ -319,8 +343,8 @@
         }
 
         .right-side {
+          flex: 1;
           padding: 25px 20px;
-          border-radius: 0 0 12px 12px;
         }
 
         .advertisement-icon {
@@ -360,6 +384,23 @@
 
       /* Very small screens */
       @media (max-width: 360px) {
+        .left-side {
+          padding: 12px;
+          border-bottom-left-radius: 15px;
+          border-bottom-right-radius: 15px;
+        }
+
+        .bw-logo {
+          position: absolute;
+          top: 0;
+          left: 0;
+        }
+
+        .bw-logo img {
+          height: 35px;
+          max-width: 150px;
+        }
+
         .right-side {
           padding: 20px 15px;
         }
@@ -406,7 +447,7 @@
       <!-- Left Side - Image -->
       <div class="left-side">
         <div class="bw-logo">
-          <img src="assets/img/BWLOGO1.png" alt="Logo" />
+          <img src="assets/img/BWLOGO.png" alt="Logo" />
         </div>
       </div>
 

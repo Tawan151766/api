@@ -40,16 +40,16 @@
         display: flex;
         align-items: center;
         justify-content: center;
-        padding: 20px;
+        margin: 0;
+        padding: 0;
       }
 
       .container {
         background: linear-gradient(135deg, #003c7e 0%, #0072bc 100%);
-        border-radius: 20px;
         box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
         width: 100%;
-        max-width: 900px;
-        min-height: 500px;
+        height: 100vh;
+        max-width: 100vw;
         display: flex;
         overflow: hidden;
         position: relative;
@@ -70,16 +70,22 @@
         justify-content: flex-start;
         position: relative;
         padding: 40px;
-        min-height: 500px;
-        border-radius: 20px;
+        height: 100vh;
+        border-top-right-radius: 20px;
+        border-bottom-right-radius: 20px;
+        border-bottom-left-radius: 0%;
+        border-top-left-radius: 0%;
         margin-right: 10px;
       }
 
       .bw-logo {
         position: absolute;
-        top: 40px;
-        left: 40px;
+        top: 0;
+        left: 0;
         z-index: 10;
+        background: white;
+        padding: 15px;
+        border-radius: 0 0 15px 0;
       }
 
       .bw-logo img {
@@ -95,14 +101,14 @@
         display: flex;
         flex-direction: column;
         justify-content: center;
-        min-height: 500px;
+        height: 100vh;
         color: white;
         text-align: center;
       }
 
       .header {
         margin-bottom: 30px;
-        text-align: center;
+        text-align: left;
       }
 
       .header h2 {
@@ -191,35 +197,37 @@
       /* Mobile Responsive */
       @media (max-width: 768px) {
         body {
-          padding: 10px;
           min-height: 100vh;
-          align-items: flex-start;
-          padding-top: 20px;
+          align-items: center;
+          justify-content: center;
         }
 
         .container {
           flex-direction: column;
-          max-width: 100%;
-          min-height: auto;
-          border-radius: 15px;
-          box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+          width: 100%;
+          height: 100vh;
+          max-width: 100vw;
+          box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
         }
 
         .left-side {
-          min-height: 300px;
+          flex: 1;
           padding: 20px;
           margin-right: 0;
           margin-bottom: 0;
-          border-radius: 15px 15px 0 0;
           display: flex;
           align-items: flex-start;
           justify-content: flex-start;
+          border-bottom-left-radius: 20px;
+          border-bottom-right-radius: 20px;
+          border-top-right-radius: 0;
+          border-top-left-radius: 0;
         }
 
         .bw-logo {
           position: absolute;
-          top: 20px;
-          left: 20px;
+          top: 0;
+          left: 0;
           text-align: left;
         }
 
@@ -229,9 +237,9 @@
         }
 
         .right-side {
+          flex: 1;
           padding: 30px 25px;
           min-height: auto;
-          border-radius: 0 0 15px 15px;
         }
 
         .logout-icon {
@@ -257,27 +265,33 @@
 
       @media (max-width: 480px) {
         body {
-          padding: 5px;
-          padding-top: 10px;
+          min-height: 100vh;
+          align-items: center;
+          justify-content: center;
         }
 
         .container {
-          border-radius: 12px;
+          width: 100%;
+          height: 100vh;
+          max-width: 100vw;
         }
 
         .left-side {
-          min-height: 250px;
+          flex: 1;
           padding: 15px;
-          border-radius: 12px 12px 0 0;
           display: flex;
           align-items: flex-start;
           justify-content: flex-start;
+          border-bottom-left-radius: 20px;
+          border-bottom-right-radius: 20px;
+          border-top-right-radius: 0;
+          border-top-left-radius: 0;
         }
 
         .bw-logo {
           position: absolute;
-          top: 15px;
-          left: 15px;
+          top: 0;
+          left: 0;
           text-align: left;
         }
 
@@ -287,8 +301,8 @@
         }
 
         .right-side {
+          flex: 1;
           padding: 25px 20px;
-          border-radius: 0 0 12px 12px;
         }
 
         .logout-icon {
@@ -346,7 +360,7 @@
       <!-- Left Side - Image -->
       <div class="left-side">
         <div class="bw-logo">
-          <img src="assets/img/BWLOGO1.png" alt="Logo" />
+          <img src="assets/img/BWLOGO.png" alt="Logo" />
         </div>
       </div>
 
