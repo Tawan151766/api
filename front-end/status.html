@@ -69,24 +69,30 @@
       /* Left Side - Image */
       .left-side {
         flex: 1;
+        min-height: 260px;
         background: linear-gradient(
             135deg,
             rgba(0, 0, 0, 0.3),
             rgba(0, 0, 0, 0.1)
           ),
-          url("assets/img/bg-tower.png") center/cover;
+          url("assets/img/bg-errors.png");
+        background-size: cover;
+        background-position: center center;
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        width: 100%;
         display: flex;
         flex-direction: column;
         align-items: flex-start;
         justify-content: flex-start;
         position: relative;
-        padding: 40px;
+        padding: 0px;
         height: 100vh;
         border-top-right-radius: 20px;
         border-bottom-right-radius: 20px;
         border-bottom-left-radius: 0%;
         border-top-left-radius: 0%;
-        margin-right: 10px;
+        margin-right: 0;
       }
 
       .bw-logo {
@@ -237,8 +243,13 @@
         }
 
         .left-side {
+          background-size: cover;
+          background-position: center center;
+          background-repeat: no-repeat;
           flex: 1;
-          padding: 20px;
+          min-height: 200px;
+          width: 100%;
+          padding: 0;
           margin-right: 0;
           margin-bottom: 0;
           display: flex;
@@ -344,14 +355,18 @@
 
         .left-side {
           flex: 1;
-          padding: 15px;
+          min-height: 180px;
+          width: 100%;
+          padding: 8vw 0 8vw 0;
           display: flex;
-          align-items: flex-start;
-          justify-content: flex-start;
-          border-bottom-left-radius: 20px;
-          border-bottom-right-radius: 20px;
+          align-items: center;
+          justify-content: center;
+          border-bottom-left-radius: 18px;
+          border-bottom-right-radius: 18px;
           border-top-right-radius: 0;
           border-top-left-radius: 0;
+          background-size: cover;
+          background-position: center center;
         }
 
         .bw-logo {
@@ -421,6 +436,8 @@
       /* Very small screens */
       @media (max-width: 360px) {
         .left-side {
+          min-height: 260px;
+          width: 100%;
           padding: 12px;
           border-bottom-left-radius: 15px;
           border-bottom-right-radius: 15px;
